@@ -3,77 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ek Chhoti Si Kitab - Subhashree Ji Ke Liye</title>
+<title>Kshama - Subhashree Ji</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    min-height: 100%;
-  }
-
   body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: #0d001a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+    background: #0a0a1a;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
     color: #fff;
-    padding: 20px 12px;
-    perspective: 2400px;
+    padding: 20px 14px;
     position: relative;
   }
 
   /* ================================================
-     WOODEN TABLE BACKGROUND
+     PREMIUM GRADIENT BACKGROUND
      ================================================ */
-  .table-bg {
+  .bg {
     position: fixed;
     inset: 0;
     z-index: 0;
     background:
-      /* Wood grain */
-      repeating-linear-gradient(
-        92deg,
-        rgba(60, 35, 18, 0.0) 0px,
-        rgba(60, 35, 18, 0.0) 2px,
-        rgba(40, 22, 10, 0.5) 2px,
-        rgba(40, 22, 10, 0.5) 3px,
-        rgba(60, 35, 18, 0.0) 3px,
-        rgba(60, 35, 18, 0.0) 7px
-      ),
-      repeating-linear-gradient(
-        88deg,
-        rgba(80, 50, 25, 0.2) 0px,
-        rgba(80, 50, 25, 0.2) 15px,
-        rgba(50, 30, 15, 0.35) 15px,
-        rgba(50, 30, 15, 0.35) 30px
-      ),
-      radial-gradient(ellipse at 50% 30%, #6b4423 0%, #4a2e15 35%, #2a1809 70%, #140a04 100%);
-    background-size: 8px 100%, 60px 100%, 100% 100%;
+      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(139, 92, 246, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 55% at 85% 15%, rgba(236, 72, 153, 0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 75% 60% at 50% 100%, rgba(99, 102, 241, 0.3) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(244, 114, 182, 0.2) 0%, transparent 55%),
+      linear-gradient(160deg, #0a0a1a 0%, #15072a 50%, #0a0415 100%);
+    animation: bgShift 20s ease-in-out infinite;
   }
-  .table-bg::after {
+  @keyframes bgShift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50%      { filter: hue-rotate(20deg); }
+  }
+
+  /* Subtle noise / grain */
+  .bg::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 40%, transparent 30%, rgba(0,0,0,0.6) 100%);
-    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
   }
 
-  /* Stars (subtle) */
+  /* Floating orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: 1;
+    animation: orbFloat 18s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .orb.o1 { width: 320px; height: 320px; background: #a855f7; top: 5%; left: -8%; }
+  .orb.o2 { width: 280px; height: 280px; background: #ec4899; bottom: 8%; right: -6%; animation-delay: -6s; }
+  .orb.o3 { width: 240px; height: 240px; background: #6366f1; top: 55%; left: 45%; animation-delay: -12s; opacity: 0.25; }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(40px, -30px) scale(1.1); }
+    66%      { transform: translate(-30px, 30px) scale(0.95); }
+  }
+
+  /* Stars */
   .star {
     position: fixed;
-    width: 2px; height: 2px;
+    width: 1.5px; height: 1.5px;
     background: #fff;
     border-radius: 50%;
-    animation: twinkle 3s infinite;
+    animation: twinkle 4s infinite;
     z-index: 1;
-    opacity: 0.5;
+    pointer-events: none;
   }
   @keyframes twinkle {
     0%, 100% { opacity: 0.1; }
-    50%      { opacity: 1; box-shadow: 0 0 8px #fff; }
+    50%      { opacity: 0.9; box-shadow: 0 0 6px #fff; }
   }
 
   /* ================================================
@@ -82,529 +90,488 @@
   .screen {
     display: none;
     width: 100%;
-    max-width: 1000px;
+    max-width: 720px;
     z-index: 10;
-    animation: fadeIn 0.9s ease;
     position: relative;
   }
-  .screen.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .screen.active { display: block; animation: screenIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   /* ================================================
-     LOGIN — looks like a closed book / diary cover
+     PREMIUM GLASS CARD
      ================================================ */
-  .login-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-  }
-
-  .login-card {
+  .glass {
     position: relative;
-    background:
-      linear-gradient(135deg, #6b2a1e 0%, #4a1a12 50%, #3a1009 100%);
-    border-radius: 6px 16px 16px 6px;
-    padding: 55px 42px;
-    max-width: 460px;
-    width: 100%;
-    text-align: center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    padding: 48px 40px;
     box-shadow:
-      /* Book thickness */
-      0 0 0 1px rgba(255, 200, 150, 0.15),
-      inset 0 0 0 1px rgba(255, 200, 150, 0.08),
-      inset 0 0 60px rgba(0, 0, 0, 0.5),
-      /* 3D depth */
-      12px 12px 0 -2px #2a0d07,
-      14px 14px 0 -2px #1a0603,
-      20px 20px 60px rgba(0, 0, 0, 0.8),
-      0 40px 80px rgba(0, 0, 0, 0.6);
-    border-left: 6px solid #2a0d07;
+      0 30px 80px -20px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 1px 0 rgba(255, 255, 255, 0.15) inset,
+      0 0 80px -30px rgba(168, 85, 247, 0.4);
+    overflow: hidden;
   }
-
-  /* Embossed border on the cover */
-  .login-card::before {
+  /* Top shine line */
+  .glass::before {
     content: '';
     position: absolute;
-    inset: 14px;
-    border: 1.5px solid rgba(220, 180, 120, 0.3);
-    border-radius: 4px 12px 12px 4px;
-    pointer-events: none;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
   }
 
-  .lock-svg {
-    width: 60px; height: 60px;
-    margin-bottom: 18px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-    animation: pulse 2.5s ease-in-out infinite;
+  /* ================================================
+     LOGIN
+     ================================================ */
+  .login-card {
+    text-align: center;
   }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.08); }
+
+  .lock-wrap {
+    width: 82px; height: 82px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 0 40px -10px rgba(168, 85, 247, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: lockPulse 3s ease-in-out infinite;
   }
+  @keyframes lockPulse {
+    0%, 100% { box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.6), inset 0 1px 0 rgba(255,255,255,0.2); }
+    50%      { box-shadow: 0 0 60px -5px rgba(236, 72, 153, 0.7), inset 0 1px 0 rgba(255,255,255,0.25); }
+  }
+  .lock-svg { width: 38px; height: 38px; }
 
   .login-title {
-    font-family: 'Georgia', serif;
-    font-size: 1.75em;
-    margin-bottom: 12px;
-    color: #e8c88a;
-    text-shadow:
-      0 1px 0 rgba(0,0,0,0.7),
-      0 0 20px rgba(232, 200, 138, 0.4);
-    font-style: italic;
-    letter-spacing: 1.5px;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 50%, #fbcfe8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
   }
 
   .login-sub {
-    font-size: 0.92em;
-    color: #d4b483;
-    margin-bottom: 28px;
-    font-style: italic;
-    opacity: 0.9;
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 32px;
     line-height: 1.7;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    font-weight: 400;
   }
 
   .pin-input {
     width: 100%;
-    padding: 16px;
+    padding: 18px 20px;
     font-size: 1.5em;
     text-align: center;
     letter-spacing: 14px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(220, 180, 120, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     background: rgba(0, 0, 0, 0.25);
-    color: #e8c88a;
-    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-family: 'SF Mono', 'Courier New', monospace;
     outline: none;
     transition: all 0.3s;
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+    font-weight: 600;
   }
   .pin-input:focus {
-    border-color: #e8c88a;
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(232, 200, 138, 0.35);
+    border-color: rgba(168, 85, 247, 0.6);
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.12), 0 0 30px -5px rgba(168, 85, 247, 0.5);
   }
   .pin-input::placeholder {
-    color: rgba(232, 200, 138, 0.35);
-    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 4px;
     font-size: 0.65em;
+    font-weight: 400;
   }
 
   .hint {
-    font-size: 0.8em;
-    color: #b89a6a;
-    margin-top: 12px;
-    opacity: 0.8;
-    font-style: italic;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    font-size: 0.82em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 14px;
+    font-weight: 400;
   }
 
-  .unlock-btn {
-    margin-top: 24px;
-    width: 100%;
-    padding: 15px;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     border: none;
-    border-radius: 8px;
-    font-size: 1em;
-    font-weight: 700;
-    font-family: 'Georgia', serif;
-    font-style: italic;
+    border-radius: 16px;
+    font-family: inherit;
+    font-weight: 600;
     cursor: pointer;
-    background: linear-gradient(180deg, #e8c88a 0%, #c9a666 50%, #a88545 100%);
-    color: #3a1a0a;
-    box-shadow:
-      0 1px 0 rgba(255, 240, 200, 0.5) inset,
-      0 -2px 0 rgba(0, 0, 0, 0.25) inset,
-      0 6px 16px rgba(0, 0, 0, 0.5);
-    transition: all 0.25s;
-    letter-spacing: 1.5px;
-    text-shadow: 0 1px 0 rgba(255, 240, 200, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.3px;
+    font-size: 0.98em;
   }
-  .unlock-btn:hover {
+
+  .btn-primary {
+    margin-top: 26px;
+    width: 100%;
+    padding: 17px;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color: #fff;
+    box-shadow:
+      0 10px 30px -10px rgba(168, 85, 247, 0.6),
+      0 0 0 1px rgba(255,255,255,0.1) inset,
+      0 1px 0 rgba(255,255,255,0.25) inset;
+  }
+  .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow:
-      0 1px 0 rgba(255, 240, 200, 0.5) inset,
-      0 -2px 0 rgba(0, 0, 0, 0.25) inset,
-      0 10px 24px rgba(232, 200, 138, 0.35);
+      0 16px 40px -10px rgba(236, 72, 153, 0.7),
+      0 0 0 1px rgba(255,255,255,0.15) inset,
+      0 1px 0 rgba(255,255,255,0.3) inset;
   }
-  .unlock-btn:active { transform: translateY(0); }
+  .btn-primary:active { transform: translateY(0); }
 
   .error {
-    color: #ff9a7a;
+    color: #fca5a5;
     font-size: 0.85em;
     margin-top: 14px;
     min-height: 20px;
     opacity: 0;
     transition: opacity 0.3s;
-    font-style: italic;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    font-weight: 500;
   }
   .error.show { opacity: 1; }
 
   .shake { animation: shakeCard 0.5s ease; }
   @keyframes shakeCard {
     0%,100% { transform: translateX(0); }
-    20% { transform: translateX(-12px); }
-    40% { transform: translateX(12px); }
-    60% { transform: translateX(-8px); }
-    80% { transform: translateX(8px); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
   }
 
   /* ================================================
-     THE OPEN BOOK — premium, realistic
+     READING CARD (chapter view)
      ================================================ */
-  .book-wrap {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    perspective: 2800px;
-  }
-
-  .book {
-    position: relative;
-    width: 100%;
-    max-width: 980px;
-    height: 680px;
-    transform-style: preserve-3d;
-    filter:
-      drop-shadow(0 40px 50px rgba(0, 0, 0, 0.9))
-      drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7))
-      drop-shadow(0 0 60px rgba(255, 180, 120, 0.08));
-  }
-
-  /* The open book body */
-  .book-body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px 14px 14px 4px;
-    background: #2a1a12;
-    box-shadow:
-      inset 0 0 0 1px rgba(0,0,0,0.6),
-      /* Book spine binding (left edge) */
-      -3px 0 0 rgba(0,0,0,0.4),
-      -5px 0 0 #1a0d08,
-      -7px 0 0 rgba(0,0,0,0.3);
-  }
-
-  /* Deep shadow in the center spine */
-  .book-body::before {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 50%;
-    width: 60px;
-    transform: translateX(-50%);
-    background:
-      linear-gradient(90deg,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.15) 25%,
-        rgba(0,0,0,0.55) 45%,
-        rgba(0,0,0,0.75) 50%,
-        rgba(0,0,0,0.55) 55%,
-        rgba(0,0,0,0.15) 75%,
-        rgba(0,0,0,0) 100%);
-    z-index: 20;
-    pointer-events: none;
-  }
-
-  /* Thin vertical stitch line in center */
-  .book-body::after {
-    content: '';
-    position: absolute;
-    top: 8%;
-    bottom: 8%;
-    left: 50%;
-    width: 1px;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, transparent, rgba(120, 80, 40, 0.4) 15%, rgba(120, 80, 40, 0.4) 85%, transparent);
-    z-index: 21;
-    pointer-events: none;
-  }
-
-  /* LEFT PAGE */
-  .page-left {
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0;
-    width: 50%;
-    border-radius: 4px 0 0 4px;
-    overflow: hidden;
-    z-index: 5;
-    background:
-      /* Aged paper — warm cream with subtle blotches */
-      radial-gradient(circle at 25% 20%, rgba(180, 140, 90, 0.10) 0%, transparent 40%),
-      radial-gradient(circle at 70% 65%, rgba(160, 120, 70, 0.08) 0%, transparent 45%),
-      radial-gradient(circle at 15% 85%, rgba(150, 110, 60, 0.07) 0%, transparent 35%),
-      linear-gradient(160deg, #f4e9d0 0%, #ecdec0 40%, #e0d0b0 100%);
-    box-shadow:
-      inset -20px 0 40px -20px rgba(80, 50, 20, 0.55),
-      inset 6px 0 12px -8px rgba(255, 250, 230, 0.8),
-      inset 0 4px 8px -4px rgba(120, 80, 40, 0.2),
-      inset 0 -4px 8px -4px rgba(120, 80, 40, 0.2);
-  }
-
-  /* RIGHT PAGE */
-  .page-right {
-    position: absolute;
-    top: 0; bottom: 0;
-    right: 0;
-    width: 50%;
-    border-radius: 0 14px 14px 0;
-    overflow: hidden;
-    z-index: 5;
-    background:
-      radial-gradient(circle at 75% 20%, rgba(180, 140, 90, 0.10) 0%, transparent 40%),
-      radial-gradient(circle at 30% 70%, rgba(160, 120, 70, 0.08) 0%, transparent 45%),
-      radial-gradient(circle at 85% 85%, rgba(150, 110, 60, 0.07) 0%, transparent 35%),
-      linear-gradient(200deg, #f4e9d0 0%, #ecdec0 40%, #e0d0b0 100%);
-    box-shadow:
-      inset 20px 0 40px -20px rgba(80, 50, 20, 0.55),
-      inset -6px 0 12px -8px rgba(255, 250, 230, 0.8),
-      inset 0 4px 8px -4px rgba(120, 80, 40, 0.2),
-      inset 0 -4px 8px -4px rgba(120, 80, 40, 0.2);
-  }
-
-  /* Paper fiber texture overlay */
-  .paper-fiber {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.35;
-    z-index: 6;
-    background-image:
-      repeating-linear-gradient(45deg,
-        rgba(140, 100, 60, 0.04) 0px,
-        rgba(140, 100, 60, 0.04) 1px,
-        transparent 1px,
-        transparent 3px),
-      repeating-linear-gradient(-30deg,
-        rgba(120, 90, 50, 0.03) 0px,
-        rgba(120, 90, 50, 0.03) 1px,
-        transparent 1px,
-        transparent 4px);
-  }
-
-  /* Faint horizontal rule lines */
-  .paper-lines {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.18;
-    z-index: 6;
-    background-image:
-      repeating-linear-gradient(180deg,
-        transparent 0px,
-        transparent 31px,
-        rgba(120, 80, 40, 0.35) 31px,
-        rgba(120, 80, 40, 0.35) 32px);
-    background-position: 0 20px;
-  }
-
-  /* Page curl shadow at outer edges */
-  .page-left::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0;
-    width: 20px;
-    background: linear-gradient(90deg, rgba(60, 30, 10, 0.35) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 8;
-  }
-  .page-right::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    right: 0;
-    width: 20px;
-    background: linear-gradient(-90deg, rgba(60, 30, 10, 0.35) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 8;
-  }
-
-  /* PAGE CONTENT */
-  .page-content {
-    position: absolute;
-    inset: 0;
-    padding: 52px 48px 60px;
-    color: #3a2515;
-    font-family: 'Georgia', 'Times New Roman', serif;
+  .chapter-card {
+    padding: 52px 46px;
+    min-height: 520px;
     display: flex;
     flex-direction: column;
-    z-index: 7;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(120,80,40,0.4) transparent;
   }
-  .page-content::-webkit-scrollbar { width: 4px; }
-  .page-content::-webkit-scrollbar-thumb { background: rgba(120,80,40,0.4); border-radius: 4px; }
 
-  .page-content h2 {
-    font-family: 'Georgia', serif;
-    font-size: 1.6em;
-    color: #7a2a3a;
-    margin-bottom: 6px;
-    font-style: italic;
-    letter-spacing: 0.5px;
-    line-height: 1.3;
-    text-shadow: 0 1px 0 rgba(255, 250, 230, 0.5);
+  .chapter-head {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .page-content .date {
-    font-size: 0.78em;
-    color: #8a6a40;
-    margin-bottom: 24px;
-    font-style: italic;
-    letter-spacing: 0.5px;
+
+  .chapter-label {
+    display: inline-block;
+    font-size: 0.72em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(236, 72, 153, 0.9);
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(236, 72, 153, 0.1);
+    border: 1px solid rgba(236, 72, 153, 0.2);
   }
-  .page-content p {
-    font-size: 0.97em;
-    line-height: 1.9;
-    margin-bottom: 14px;
-    color: #3a2515;
-    text-align: left;
-  }
-  .page-content .drop-cap::first-letter {
-    font-size: 3em;
-    float: left;
-    line-height: 0.85;
-    padding: 8px 10px 0 0;
-    color: #8b2a3a;
-    font-family: 'Georgia', serif;
+
+  .chapter-title {
+    font-size: 1.85em;
     font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 6px;
   }
-  .page-content .hl {
-    color: #8b2a3a;
-    font-weight: 600;
+
+  .chapter-date {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 400;
     font-style: italic;
   }
-  .page-content .signature {
+
+  .chapter-body {
+    flex: 1;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.02em;
+    line-height: 1.9;
+    font-weight: 400;
+  }
+
+  .chapter-body p {
+    margin-bottom: 16px;
+  }
+
+  .chapter-body .drop-cap::first-letter {
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.9;
+    padding: 6px 12px 0 0;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .chapter-body .hl {
+    color: #f9a8d4;
+    font-weight: 600;
+  }
+
+  .signature {
     margin-top: auto;
-    padding-top: 20px;
+    padding-top: 24px;
+    font-size: 0.92em;
+    color: rgba(255, 255, 255, 0.5);
     font-style: italic;
-    color: #6b2a3a;
-    font-size: 0.95em;
     text-align: right;
-    border-top: 1px dashed rgba(120, 80, 40, 0.35);
-  }
-
-  /* PAGE NUMBERS */
-  .page-num {
-    position: absolute;
-    bottom: 20px;
-    font-family: 'Georgia', serif;
-    font-size: 0.78em;
-    color: #8a6a40;
-    font-style: italic;
-    letter-spacing: 1.5px;
-    z-index: 10;
-  }
-  .page-num.left { left: 30px; }
-  .page-num.right { right: 30px; }
-
-  /* ================================================
-     PAGE FLIP
-     ================================================ */
-  .flip-page {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 50%;
-    backface-visibility: hidden;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 15;
-    background:
-      radial-gradient(circle at 40% 30%, rgba(180, 140, 90, 0.1) 0%, transparent 50%),
-      linear-gradient(160deg, #f4e9d0 0%, #ecdec0 40%, #e0d0b0 100%);
-  }
-  .flip-page.left-side {
-    left: 0;
-    transform-origin: right center;
-    border-radius: 4px 0 0 4px;
-    box-shadow: inset -20px 0 40px -20px rgba(80, 50, 20, 0.5);
-  }
-  .flip-page.right-side {
-    right: 0;
-    transform-origin: left center;
-    border-radius: 0 14px 14px 0;
-    box-shadow: inset 20px 0 40px -20px rgba(80, 50, 20, 0.5);
-  }
-  .flip-page.flipping-right { animation: flipRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-  .flip-page.flipping-left  { animation: flipLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-  @keyframes flipRight {
-    0%   { opacity: 0; transform: rotateY(0deg); }
-    10%  { opacity: 1; }
-    50%  { box-shadow: -20px 0 40px rgba(0,0,0,0.4); }
-    100% { opacity: 0; transform: rotateY(-180deg); }
-  }
-  @keyframes flipLeft {
-    0%   { opacity: 0; transform: rotateY(0deg); }
-    10%  { opacity: 1; }
-    50%  { box-shadow: 20px 0 40px rgba(0,0,0,0.4); }
-    100% { opacity: 0; transform: rotateY(180deg); }
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   /* ================================================
-     NAV BUTTONS
+     IN-PAGE BUTTONS
      ================================================ */
-  .nav-row {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    margin-top: 26px;
-    flex-wrap: wrap;
-    z-index: 20;
-    position: relative;
-  }
-
-  .nav-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 30px;
-    border-radius: 40px;
-    font-family: 'Georgia', serif;
-    font-size: 0.98em;
-    font-weight: 600;
-    font-style: italic;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    border: none;
-  }
-
-  .nav-btn.prev-btn {
-    background: rgba(60, 30, 15, 0.6);
-    color: #e8c88a;
-    border: 1px solid rgba(220, 180, 120, 0.35);
+  .btn-soft {
+    padding: 13px 24px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 0.93em;
     backdrop-filter: blur(10px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,200,150,0.15);
+    margin-top: 14px;
+    align-self: flex-start;
   }
-  .nav-btn.prev-btn:hover {
-    background: rgba(80, 40, 20, 0.75);
-    border-color: #e8c88a;
+  .btn-soft:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
   }
 
-  .nav-btn.next-btn {
-    background: linear-gradient(180deg, #e8c88a 0%, #c9a666 55%, #a88545 100%);
-    color: #3a1a0a;
+  .btn-accent {
+    padding: 13px 26px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color: #fff;
+    font-size: 0.93em;
+    margin-top: 14px;
+    align-self: flex-start;
     box-shadow:
-      0 1px 0 rgba(255, 240, 200, 0.5) inset,
-      0 -2px 0 rgba(0, 0, 0, 0.25) inset,
-      0 8px 22px rgba(232, 200, 138, 0.35);
-    text-shadow: 0 1px 0 rgba(255, 240, 200, 0.3);
+      0 8px 24px -8px rgba(168, 85, 247, 0.6),
+      0 1px 0 rgba(255,255,255,0.2) inset;
   }
-  .nav-btn.next-btn:hover {
-    transform: translateY(-3px);
+  .btn-accent:hover {
+    transform: translateY(-2px);
     box-shadow:
-      0 1px 0 rgba(255, 240, 200, 0.5) inset,
-      0 -2px 0 rgba(0, 0, 0, 0.25) inset,
-      0 14px 30px rgba(232, 200, 138, 0.5);
+      0 12px 32px -8px rgba(236, 72, 153, 0.7),
+      0 1px 0 rgba(255,255,255,0.25) inset;
+  }
+
+  .btn-icon { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+  /* ================================================
+     JOKE BOX
+     ================================================ */
+  .joke-box {
+    padding: 20px 22px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05));
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1em;
+    line-height: 1.75;
+    margin: 8px 0 14px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s;
+    font-style: italic;
+  }
+
+  /* ================================================
+     QUESTION
+     ================================================ */
+  .question-text {
+    font-size: 1.3em;
+    font-weight: 500;
+    text-align: center;
+    margin: 26px 0 34px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+  }
+
+  .qa-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 70px;
+    position: relative;
+  }
+
+  .qa-btn {
+    padding: 15px 38px;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    letter-spacing: 0.3px;
+  }
+
+  .qa-yes {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color: #fff;
+    box-shadow:
+      0 12px 30px -10px rgba(168, 85, 247, 0.6),
+      0 1px 0 rgba(255,255,255,0.2) inset;
+  }
+  .qa-yes:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 18px 40px -10px rgba(236, 72, 153, 0.8);
+  }
+
+  .qa-no {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .qa-no:hover { background: rgba(255, 255, 255, 0.1); }
+
+  .no-hint {
+    font-size: 0.9em;
+    color: rgba(249, 168, 212, 0.9);
+    text-align: center;
+    margin-top: 18px;
+    min-height: 22px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    font-style: italic;
+  }
+
+  /* ================================================
+     FINAL SCREEN
+     ================================================ */
+  .final-heart {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    transform: rotate(-45deg);
+    position: relative;
+    margin: 8px auto 36px;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    box-shadow: 0 0 50px rgba(236, 72, 153, 0.7);
+  }
+  .final-heart::before, .final-heart::after {
+    content: '';
+    position: absolute;
+    width: 64px; height: 64px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .final-heart::before { top: -32px; left: 0; }
+  .final-heart::after  { top: 0; left: 32px; }
+  @keyframes heartbeat {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    25%      { transform: rotate(-45deg) scale(1.12); }
+    50%      { transform: rotate(-45deg) scale(1); }
+    75%      { transform: rotate(-45deg) scale(1.08); }
+  }
+
+  .final-title {
+    font-size: 1.9em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #ffffff 0%, #fbcfe8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+
+  .final-text {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.9;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* ================================================
+     NAVIGATION
+     ================================================ */
+  .nav-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    letter-spacing: 0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .nav-prev {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+  }
+  .nav-prev:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .nav-next {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    color: #fff;
+    box-shadow:
+      0 10px 28px -10px rgba(168, 85, 247, 0.6),
+      0 1px 0 rgba(255,255,255,0.2) inset;
+  }
+  .nav-next:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 16px 36px -10px rgba(236, 72, 153, 0.75),
+      0 1px 0 rgba(255,255,255,0.25) inset;
   }
 
   .nav-btn:disabled {
@@ -613,183 +580,27 @@
     transform: none !important;
   }
 
-  .btn-icon { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-
   /* ================================================
-     IN-PAGE INTERACTIVE ELEMENTS
+     PROGRESS DOTS
      ================================================ */
-  .heart-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 11px 22px;
-    border-radius: 40px;
-    font-family: 'Georgia', serif;
-    font-size: 0.9em;
-    font-weight: 700;
-    font-style: italic;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: all 0.3s;
-    margin-top: 12px;
-    align-self: flex-start;
-    background: linear-gradient(180deg, #8b2a3a 0%, #6b1a2a 100%);
-    color: #f4e9d0;
-    border: 1px solid rgba(120, 20, 40, 0.5);
-    box-shadow:
-      0 1px 0 rgba(255, 200, 200, 0.2) inset,
-      0 6px 16px rgba(120, 30, 50, 0.4);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-  }
-  .heart-btn:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 1px 0 rgba(255, 200, 200, 0.3) inset,
-      0 10px 24px rgba(120, 30, 50, 0.6);
-  }
-  .heart-btn:active { transform: translateY(0); }
-
-  .joke-text {
-    font-style: italic;
-    color: #6b2a3a;
-    font-size: 1.02em;
-    line-height: 1.75;
-    padding: 16px 18px;
-    background: rgba(139, 42, 58, 0.06);
-    border-left: 3px solid #8b2a3a;
-    border-radius: 0 10px 10px 0;
-    margin: 10px 0 14px;
-    min-height: 78px;
-    transition: opacity 0.3s;
-    box-shadow: inset 0 1px 4px rgba(120, 80, 40, 0.08);
-  }
-
-  .question-text {
-    font-size: 1.2em;
-    color: #6b2a3a;
-    line-height: 1.7;
-    margin: 22px 0 30px;
-    font-style: italic;
-    text-align: center;
-  }
-
-  .qa-row {
+  .dots {
     display: flex;
-    gap: 14px;
+    gap: 8px;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    position: relative;
-    min-height: 70px;
+    margin-top: 22px;
   }
-
-  .qa-btn {
-    padding: 13px 32px;
-    border-radius: 40px;
-    font-family: 'Georgia', serif;
-    font-size: 1em;
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    border: none;
-  }
-  .qa-yes {
-    background: linear-gradient(180deg, #8b2a3a 0%, #6b1a2a 100%);
-    color: #f4e9d0;
-    box-shadow:
-      0 1px 0 rgba(255, 200, 200, 0.2) inset,
-      0 8px 20px rgba(120, 30, 50, 0.4);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-  }
-  .qa-yes:hover { transform: translateY(-2px) scale(1.05); }
-
-  .qa-no {
-    background: rgba(120, 80, 40, 0.1);
-    color: #6b2a3a;
-    border: 1px solid rgba(120, 80, 40, 0.4);
-  }
-
-  .no-hint {
-    font-size: 0.87em;
-    color: #8b2a3a;
-    font-style: italic;
-    text-align: center;
-    margin-top: 16px;
-    min-height: 22px;
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-
-  .final-heart {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, #8b2a3a, #6b1a2a);
-    transform: rotate(-45deg);
-    position: relative;
-    margin: 14px auto 30px;
-    animation: heartbeat 1.3s ease-in-out infinite;
-    box-shadow: 0 0 28px rgba(139, 42, 58, 0.5);
-  }
-  .final-heart::before, .final-heart::after {
-    content: '';
-    position: absolute;
-    width: 56px; height: 56px;
-    background: inherit;
+  .dot {
+    width: 8px; height: 8px;
     border-radius: 50%;
-  }
-  .final-heart::before { top: -28px; left: 0; }
-  .final-heart::after  { top: 0; left: 28px; }
-  @keyframes heartbeat {
-    0%, 100% { transform: rotate(-45deg) scale(1); }
-    25%      { transform: rotate(-45deg) scale(1.14); }
-    50%      { transform: rotate(-45deg) scale(1); }
-    75%      { transform: rotate(-45deg) scale(1.1); }
-  }
-
-  .final-title {
-    font-size: 1.6em;
-    color: #7a2a3a;
-    text-align: center;
-    margin-bottom: 16px;
-    font-style: italic;
-    text-shadow: 0 1px 0 rgba(255, 250, 230, 0.5);
-  }
-
-  .final-text {
-    font-size: 0.97em;
-    color: #3a2515;
-    line-height: 1.9;
-    text-align: center;
-    font-style: italic;
-    margin-bottom: 18px;
-  }
-
-  .wa-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 13px 26px;
-    border-radius: 40px;
-    font-family: 'Georgia', serif;
-    font-size: 0.93em;
-    font-weight: 700;
-    font-style: italic;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
-    background: linear-gradient(180deg, #25D366 0%, #128C7E 100%);
-    color: #fff;
-    border: none;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,0.3) inset,
-      0 8px 20px rgba(37, 211, 102, 0.4);
-    transition: all 0.3s;
-    margin: 8px auto 0;
-    width: fit-content;
-    letter-spacing: 0.5px;
   }
-  .wa-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.6);
+  .dot.active {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
   }
 
   /* ================================================
@@ -799,22 +610,22 @@
     position: fixed;
     top: 18px;
     right: 18px;
-    background: rgba(60, 30, 15, 0.75);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(220, 180, 120, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 40px;
     padding: 9px 18px;
     font-size: 0.82em;
-    color: #e8c88a;
-    font-family: 'Georgia', serif;
-    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
     z-index: 100;
     display: none;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,200,150,0.15);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    font-weight: 500;
   }
-  .music-badge.show { display: flex; animation: fadeIn 0.5s ease; }
+  .music-badge.show { display: flex; animation: screenIn 0.5s ease; }
 
   .music-bars {
     display: flex;
@@ -824,7 +635,7 @@
   }
   .music-bars span {
     width: 3px;
-    background: #e8c88a;
+    background: linear-gradient(180deg, #a855f7, #ec4899);
     border-radius: 2px;
     animation: barPulse 0.9s ease-in-out infinite;
   }
@@ -840,140 +651,89 @@
   /* ================================================
      RESPONSIVE
      ================================================ */
-  @media (max-width: 760px) {
-    .book { height: 640px; }
-    .page-content { padding: 42px 32px 55px; }
-    .page-content h2 { font-size: 1.35em; }
-    .page-content p { font-size: 0.92em; line-height: 1.8; }
-  }
-
-  @media (max-width: 600px) {
-    body { padding: 12px 6px; }
-    .book {
-      height: auto;
-      min-height: 700px;
-      flex-direction: column;
-    }
-    .book-body {
-      height: 700px;
-      display: flex;
-      flex-direction: column;
-      border-radius: 8px;
-    }
-    .book-body::before,
-    .book-body::after {
-      /* Reposition spine shadow for stacked pages */
-      top: 50%;
-      bottom: auto;
-      left: 0;
-      right: 0;
-      width: auto;
-      height: 40px;
-      transform: translateY(-50%);
-      background: linear-gradient(180deg,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0.5) 45%,
-        rgba(0,0,0,0.75) 50%,
-        rgba(0,0,0,0.5) 55%,
-        rgba(0,0,0,0) 100%);
-    }
-    .book-body::after { display: none; }
-
-    .page-left, .page-right {
-      position: relative;
-      width: 100%;
-      height: 50%;
-      left: auto; right: auto;
-      top: auto; bottom: auto;
-    }
-    .page-left { border-radius: 8px 8px 0 0; box-shadow: inset 0 -20px 30px -20px rgba(80, 50, 20, 0.5); }
-    .page-right { border-radius: 0 0 8px 8px; box-shadow: inset 0 20px 30px -20px rgba(80, 50, 20, 0.5); }
-    .page-left::after, .page-right::after { display: none; }
-
-    .page-content { padding: 24px 22px 40px; position: absolute; inset: 0; }
-    .page-content h2 { font-size: 1.15em; }
-    .page-content p { font-size: 0.85em; line-height: 1.75; margin-bottom: 9px; }
-    .page-content .drop-cap::first-letter { font-size: 2.3em; padding: 5px 7px 0 0; }
-    .page-content .date { margin-bottom: 14px; font-size: 0.72em; }
-    .page-content .signature { padding-top: 12px; font-size: 0.85em; }
-
-    .page-num { bottom: 10px; font-size: 0.7em; }
-    .page-num.left { left: 16px; }
-    .page-num.right { right: 16px; }
-
-    .nav-btn { padding: 11px 20px; font-size: 0.85em; }
-    .qa-btn { padding: 11px 22px; font-size: 0.88em; }
-    .login-title { font-size: 1.4em; }
-    .login-card { padding: 40px 26px; }
-    .music-badge { top: 10px; right: 10px; padding: 7px 12px; font-size: 0.72em; }
+  @media (max-width: 640px) {
+    body { padding: 14px 10px; }
+    .glass { padding: 36px 26px; border-radius: 24px; }
+    .chapter-card { padding: 38px 26px; min-height: 480px; }
+    .login-title { font-size: 1.5em; }
+    .chapter-title { font-size: 1.5em; }
+    .chapter-body { font-size: 0.96em; line-height: 1.85; }
+    .chapter-body .drop-cap::first-letter { font-size: 2.6em; padding: 4px 8px 0 0; }
+    .lock-wrap { width: 70px; height: 70px; margin-bottom: 18px; }
+    .lock-svg { width: 32px; height: 32px; }
+    .question-text { font-size: 1.15em; margin: 20px 0 26px; }
+    .qa-btn { padding: 13px 28px; font-size: 0.95em; }
+    .nav-btn { padding: 12px 20px; font-size: 0.88em; }
+    .final-title { font-size: 1.55em; }
+    .final-heart { width: 52px; height: 52px; }
+    .final-heart::before, .final-heart::after { width: 52px; height: 52px; }
+    .final-heart::before { top: -26px; }
+    .final-heart::after { left: 26px; }
+    .music-badge { top: 10px; right: 10px; padding: 7px 13px; font-size: 0.72em; }
   }
 
   @media (max-width: 400px) {
-    .page-content { padding: 20px 16px 36px; }
-    .page-content p { font-size: 0.82em; }
+    .glass { padding: 30px 20px; }
+    .chapter-card { padding: 30px 20px; }
+    .chapter-body { font-size: 0.92em; }
   }
 </style>
 </head>
 <body>
 
-<div class="table-bg"></div>
+<div class="bg"></div>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="orb o3"></div>
 
 <div class="music-badge" id="musicBadge">
   <div class="music-bars"><span></span><span></span><span></span><span></span></div>
-  <span>Sangeet chal raha hai</span>
+  <span>Playing</span>
 </div>
 
 <!-- ============ SCREEN 1: LOGIN ============ -->
 <div class="screen active" id="screenLogin">
-  <div class="login-wrap">
-    <div class="login-card" id="loginCard">
+  <div class="glass login-card" id="loginCard">
+    <div class="lock-wrap">
       <svg class="lock-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9zm3 5a2 2 0 0 1 1 3.73V19a1 1 0 0 1-2 0v-1.27A2 2 0 0 1 12 14z" fill="#e8c88a"/>
+        <path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9zm3 5a2 2 0 0 1 1 3.73V19a1 1 0 0 1-2 0v-1.27A2 2 0 0 1 12 14z" fill="url(#lockGrad)"/>
+        <defs>
+          <linearGradient id="lockGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#c084fc"/>
+            <stop offset="100%" stop-color="#f472b6"/>
+          </linearGradient>
+        </defs>
       </svg>
-      <h1 class="login-title">Ek Chhoti Si Kitab</h1>
-      <p class="login-sub">Subhashree ji, yeh kitab sirf aapke liye likhi gayi hai.<br>Kholne ke liye apna sanket daaliye.</p>
-      <input type="password" inputmode="numeric" maxlength="6" class="pin-input" id="pinInput" placeholder="Sanket" autocomplete="off">
-      <p class="hint">Sanket: aapki pasandeeda tareekh (digit mein)</p>
-      <button class="unlock-btn" onclick="checkPin()">Kitab Kholiye</button>
-      <p class="error" id="errorMsg">Yeh sanket sahi nahi hai. Kripya punah prayas kijiye.</p>
     </div>
+    <h1 class="login-title">Ek Khaas Sandesh</h1>
+    <p class="login-sub">Subhashree ji, yeh sirf aapke liye hai.<br>Kholne ke liye apna sanket daaliye.</p>
+    <input type="password" inputmode="numeric" maxlength="6" class="pin-input" id="pinInput" placeholder="SANKET" autocomplete="off">
+    <p class="hint">Sanket: aapki pasandeeda tareekh (digit mein)</p>
+    <button class="btn btn-primary" onclick="checkPin()">Kholiye</button>
+    <p class="error" id="errorMsg">Yeh sanket sahi nahi hai. Kripya punah prayas kijiye.</p>
   </div>
 </div>
 
-<!-- ============ SCREEN 2: THE BOOK ============ -->
-<div class="screen" id="screenBook">
-  <div class="book-wrap">
-    <div class="book">
-      <div class="book-body">
-
-        <div class="page-left">
-          <div class="paper-fiber"></div>
-          <div class="paper-lines"></div>
-          <div class="page-content" id="leftContent"></div>
-          <div class="page-num left" id="leftNum">1</div>
-        </div>
-
-        <div class="page-right">
-          <div class="paper-fiber"></div>
-          <div class="paper-lines"></div>
-          <div class="page-content" id="rightContent"></div>
-          <div class="page-num right" id="rightNum">2</div>
-        </div>
-
-        <div class="flip-page left-side" id="flipLeft"></div>
-        <div class="flip-page right-side" id="flipRight"></div>
-
-      </div>
+<!-- ============ SCREEN 2: READING ============ -->
+<div class="screen" id="screenRead">
+  <div class="glass chapter-card" id="chapterCard">
+    <div class="chapter-head">
+      <span class="chapter-label" id="chapterLabel">Chapter 01</span>
+      <h2 class="chapter-title" id="chapterTitle"></h2>
+      <p class="chapter-date" id="chapterDate"></p>
     </div>
+    <div class="chapter-body" id="chapterBody"></div>
   </div>
 
+  <div class="dots" id="dotsRow"></div>
+
   <div class="nav-row">
-    <button class="nav-btn prev-btn" id="prevBtn" onclick="prevPage()">
+    <button class="nav-btn nav-prev" id="prevBtn" onclick="prevPage()">
       <svg class="btn-icon" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7z"/></svg>
-      Pichla Panza
+      Pichla
     </button>
-    <button class="nav-btn next-btn" id="nextBtn" onclick="nextPage()">
-      Agla Panza
+    <button class="nav-btn nav-next" id="nextBtn" onclick="nextPage()">
+      Agla
       <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7z"/></svg>
     </button>
   </div>
@@ -984,13 +744,14 @@
 </audio>
 
 <script>
-  /* ===== Subtle stars ===== */
-  for (let i = 0; i < 40; i++) {
+  /* ===== Stars ===== */
+  for (let i = 0; i < 55; i++) {
     const s = document.createElement('div');
     s.className = 'star';
     s.style.left = Math.random() * 100 + 'vw';
     s.style.top = Math.random() * 100 + 'vh';
-    s.style.animationDelay = Math.random() * 3 + 's';
+    s.style.animationDelay = Math.random() * 4 + 's';
+    s.style.animationDuration = (3 + Math.random() * 3) + 's';
     document.body.appendChild(s);
   }
 
@@ -1000,7 +761,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* ===== PIN + Music autoplay after login ===== */
+  /* ===== PIN + autoplay music after login ===== */
   const VALID_CODES = ['02', '2', '0206', '02062025', '062'];
   const voiceAudio = document.getElementById('voiceAudio');
   let voicePlaying = false;
@@ -1012,18 +773,15 @@
 
     if (VALID_CODES.includes(input)) {
       error.classList.remove('show');
-      goTo('screenBook');
-      renderBook();
+      goTo('screenRead');
+      renderPage();
       setTimeout(() => {
         voiceAudio.volume = 0.4;
         voiceAudio.play().then(() => {
           voicePlaying = true;
-          updateVoiceButtons();
-          spawnNotes();
           document.getElementById('musicBadge').classList.add('show');
         }).catch(() => {
           voicePlaying = false;
-          updateVoiceButtons();
         });
       }, 600);
     } else {
@@ -1041,194 +799,176 @@
   });
 
   /* ============================================================
-     PAGES
+     PAGES (10 chapters)
      ============================================================ */
-  const SPREADS = [
+  const PAGES = [
     {
-      left: {
-        pageNum: 1,
-        html: `
-          <h2>Ek Chhoti Si Kitab</h2>
-          <p class="date">Kewal Subhashree ji ke liye</p>
-          <p class="drop-cap">Subhashree ji, yeh kitab maine sirf ek hi kaaran se likhi hai &mdash; aapko batane ke liye ki main kitna kshama maangta hoon, aur aapse kitna prem karta hoon.</p>
-          <p>Mujhe gyaan hai ki aap naraaz hain, aur iska haqdaar bhi hoon main.</p>
-          <p>Kintu is kitab ko padhte hue, meri ek hi ichha hai &mdash; ki aapke chehre par ek chhoti si muskaan aa jaye.</p>
-          <p>Har panne par kuch naya likha hai. Aap kripya padhti rahiye&hellip;</p>
-          <div class="signature">&mdash; Aapka, sadaiv</div>
-        `
-      },
-      right: {
-        pageNum: 2,
-        html: `
-          <h2>Kshama</h2>
-          <p class="date">Hriday se, baar-baar</p>
-          <p>Maine aapko rulaya. Maine aapko akela mehsoos karaya. Aur shayad, maine aapko woh diya jo aapne kabhi arjun nahi kiya &mdash; dukh.</p>
-          <p>Main yeh nahi keh raha ki mera koi kasoor nahi tha. Kasoor tha. <span class="hl">Purna kasoor mera tha.</span></p>
-          <p>Kintu ek baat suniye&hellip; main us insaan se alag hoon jo galti karke bhaag jaata hai. Main yahan hoon. Aapke samaksh. Kshama maangte hue.</p>
-          <p>Kshama kijiye. Hriday se kshama kijiye.</p>
-        `
-      }
+      title: "Ek Chhoti Si Shuruwat",
+      date: "Kewal Subhashree ji ke liye",
+      label: "Chapter 01",
+      html: `
+        <p class="drop-cap">Subhashree ji, yeh sandesh maine sirf ek hi kaaran se likha hai &mdash; aapko batane ke liye ki main kitna kshama maangta hoon, aur aapse kitna prem karta hoon.</p>
+        <p>Mujhe gyaan hai ki aap naraaz hain, aur iska haqdaar bhi hoon main.</p>
+        <p>Kintu ise padhte hue, meri ek hi ichha hai &mdash; ki aapke chehre par ek chhoti si muskaan aa jaye.</p>
+        <p>Har panne par kuch naya likha hai. Aap kripya padhti rahiye&hellip;</p>
+        <div class="signature">&mdash; Aapka, sadaiv</div>
+      `
     },
     {
-      left: {
-        pageNum: 3,
-        html: `
-          <h2>Meri Awaaz</h2>
-          <p class="date">Ek sandesh, aapke liye</p>
-          <p>Kuch baatein likhkar nahi keh sakta. Isliye ek chhota sa sandesh bhej raha hoon&hellip;</p>
-          <p>Kripya suniye. Bas ek baar.</p>
-          <button class="heart-btn" onclick="toggleVoice()" id="voiceBtnLeft">
-            <svg class="btn-icon" viewBox="0 0 24 24" id="voiceIconLeft">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            <span id="voiceLabelLeft">Meri Awaaz Suniye</span>
-          </button>
-          <p style="margin-top:18px; font-style:italic; color:#6b2a3a;">&ldquo;Main aapko kabhi akela nahi chhodunga. Yeh mera vachan hai.&rdquo;</p>
-        `
-      },
-      right: {
-        pageNum: 4,
-        html: `
-          <h2>Meri Galtiyan</h2>
-          <p class="date">Saaf-saaf, bina bahana</p>
-          <p>1. Maine aapki baat dhyan se nahi suni, jab aap sunna chahti thi.</p>
-          <p>2. Maine apne ahankar ko aapse upar rakha, jo galat tha.</p>
-          <p>3. Maine aapko woh samay nahi diya jo aap arjun karti thi.</p>
-          <p>4. Maine aapko rulaya, jab aapko sahara chahiye tha.</p>
-          <p>Yeh galtiyan hain. Bahane nahi. Aur main inhe sudhaarunga.</p>
-        `
-      }
+      title: "Kshama",
+      date: "Hriday se, baar-baar",
+      label: "Chapter 02",
+      html: `
+        <p>Maine aapko rulaya. Maine aapko akela mehsoos karaya. Aur shayad, maine aapko woh diya jo aapne kabhi arjun nahi kiya &mdash; dukh.</p>
+        <p>Main yeh nahi keh raha ki mera koi kasoor nahi tha. Kasoor tha. <span class="hl">Purna kasoor mera tha.</span></p>
+        <p>Kintu ek baat suniye&hellip; main us insaan se alag hoon jo galti karke bhaag jaata hai. Main yahan hoon. Aapke samaksh. Kshama maangte hue.</p>
+        <p>Kshama kijiye. Hriday se kshama kijiye.</p>
+      `
     },
     {
-      left: {
-        pageNum: 5,
-        html: `
-          <h2>Kuch Hansi Ki Baatein</h2>
-          <p class="date">Kyunki aapki muskaan meri duniya hai</p>
-          <p>Ab kripya thoda halka mehsoos kijiye. Neeche diye button ko dabate rahiye, har baar naya halka-phulka vinyas aayega.</p>
-          <div class="joke-text" id="jokeBox">Yahan pehla vinyas aayega&hellip; button dabaiye.</div>
-          <button class="heart-btn" onclick="nextJoke()">
-            <svg class="btn-icon" viewBox="0 0 24 24">
-              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-4 7a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm-8.5 5.5h9a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1 0-1.5z"/>
-            </svg>
-            Ek Aur Dikhayiye
-          </button>
-        `
-      },
-      right: {
-        pageNum: 6,
-        html: `
-          <h2>Aapke Baare Mein</h2>
-          <p class="date">Jo main kabhi keh nahi paaya</p>
-          <p>Aap hansti hain toh lagta hai jaise poori srishti ruk gayi ho.</p>
-          <p>Aap naraaz hoti hain toh bhi sundar lagti hain &mdash; kintu woh naraazgi mujhe andar se tod deti hai.</p>
-          <p>Aap jab &ldquo;hmm&rdquo; kehti hain, main us ek shabd mein poori kahaani padh leta hoon.</p>
-          <p>Aap meri zindagi ka woh anmol hissa hain jo main khona nahi chahta. <span class="hl">Kabhi nahi.</span></p>
-        `
-      }
+      title: "Meri Awaaz",
+      date: "Ek sandesh, aapke liye",
+      label: "Chapter 03",
+      html: `
+        <p>Kuch baatein likhkar nahi keh sakta. Isliye ek chhota sa sandesh bhej raha hoon&hellip;</p>
+        <p>Kripya suniye. Bas ek baar.</p>
+        <button class="btn btn-soft" onclick="toggleVoice()" id="voiceBtnLeft" style="margin-top:20px;">
+          <svg class="btn-icon" viewBox="0 0 24 24" id="voiceIconLeft">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <span id="voiceLabelLeft">Meri Awaaz Suniye</span>
+        </button>
+        <p style="margin-top:22px; font-style:italic; color:#f9a8d4;">&ldquo;Main aapko kabhi akela nahi chhodunga. Yeh mera vachan hai.&rdquo;</p>
+      `
     },
     {
-      left: {
-        pageNum: 7,
-        html: `
-          <h2>Ek Chhota Sa Anurodh</h2>
-          <p class="date">Ab bas yeh bata dijiye&hellip;</p>
-          <p class="question-text" id="questionText">Kya aap mujhe kshama kar sakti hain?</p>
-          <div class="qa-row" id="qaRow">
-            <button class="qa-btn qa-yes" id="yesBtn" onclick="sayYes()">Haan</button>
-            <button class="qa-btn qa-no" id="noBtn" onclick="sayNo()">Nahi</button>
-          </div>
-          <p class="no-hint" id="noHint"></p>
-        `
-      },
-      right: {
-        pageNum: 8,
-        html: `
-          <h2>Ek Vachan</h2>
-          <p class="date">Likh kar deta hoon</p>
-          <p>Main vachan deta hoon&hellip;</p>
-          <p>1. Aapki baat dhyan se sununga, bina beech mein bole.</p>
-          <p>2. Aapka poora khayal rakhunga &mdash; bhojan, aaram, swasthya, sab.</p>
-          <p>3. Aapko kabhi akela mehsoos nahi karne dunga.</p>
-          <p>4. Aur jab aap naraaz hongi, main koi halka vinyas sunaunga &mdash; jab tak aap has na dein.</p>
-          <p style="font-style:italic; color:#6b2a3a;">Yeh vachan hai. Toota toh&hellip; aap bata dijiye, main sudhar jaunga.</p>
-        `
-      }
+      title: "Meri Galtiyan",
+      date: "Saaf-saaf, bina bahana",
+      label: "Chapter 04",
+      html: `
+        <p>1. Maine aapki baat dhyan se nahi suni, jab aap sunna chahti thi.</p>
+        <p>2. Maine apne ahankar ko aapse upar rakha, jo galat tha.</p>
+        <p>3. Maine aapko woh samay nahi diya jo aap arjun karti thi.</p>
+        <p>4. Maine aapko rulaya, jab aapko sahara chahiye tha.</p>
+        <p>Yeh galtiyan hain. Bahane nahi. Aur main inhe sudhaarunga.</p>
+      `
     },
     {
-      left: {
-        pageNum: 9,
-        html: `
-          <h2>Dhanyavaad</h2>
-          <p class="date">Hriday se</p>
-          <p>Yeh kitab samapt ho rahi hai&hellip; kintu humari kahaani nahi.</p>
-          <p>Aap meri zindagi mein hain, yeh meri sabse badi khushi hai. Aur main is khushi ko kabhi khona nahi chahta.</p>
-          <p>Kripya apna poora khayal rakhiye. Samay par bhojan kijiye, aaram kijiye. <span class="hl">Aapka swasthya sarvopari hai.</span></p>
-          <div class="signature">&mdash; Aapka, sadaiv</div>
-        `
-      },
-      right: {
-        pageNum: 10,
-        html: `
-          <div class="final-heart"></div>
-          <h2 class="final-title">Kshama, Subhashree ji</h2>
-          <p class="final-text">
-            Yadi aap yahan tak padh aayi hain, toh samajhiye&hellip; aapne mujhe ek avsar diya hai.<br><br>
-            Ab ek chhota sa chinh kijiye &mdash; aur mujhe bata dijiye ki aap theek hain.
-          </p>
-          <button class="wa-btn" onclick="sendToWhatsApp()">
-            <svg class="btn-icon" viewBox="0 0 24 24">
-              <path d="M12 2A10 10 0 0 0 3.5 17.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.3c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-1.5-.5-3.4-1.7-4.7-3.4-.6-.8-1-1.7-1.1-2.4-.1-.7.1-1.4.5-1.8.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2.1.4 0 .6l-.4.5c-.1.1-.2.3-.1.5.3.5.8 1.1 1.3 1.5.5.4 1 .7 1.5.9.2.1.4 0 .5-.1l.5-.6c.2-.2.4-.2.6-.1l1.4.6c.4.2.4.3.4.5v.4c0 .2-.1.4-.2.6z"/>
-            </svg>
-            WhatsApp Par Bhejiye
-          </button>
-        `
-      }
+      title: "Kuch Hansi Ki Baatein",
+      date: "Kyunki aapki muskaan meri duniya hai",
+      label: "Chapter 05",
+      html: `
+        <p>Ab kripya thoda halka mehsoos kijiye. Neeche diye button ko dabate rahiye, har baar naya halka-phulka vinyas aayega.</p>
+        <div class="joke-box" id="jokeBox">Yahan pehla vinyas aayega&hellip; button dabaiye.</div>
+        <button class="btn btn-accent" onclick="nextJoke()">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-4 7a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm-8.5 5.5h9a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1 0-1.5z"/>
+          </svg>
+          Ek Aur Dikhayiye
+        </button>
+      `
+    },
+    {
+      title: "Aapke Baare Mein",
+      date: "Jo main kabhi keh nahi paaya",
+      label: "Chapter 06",
+      html: `
+        <p>Aap hansti hain toh lagta hai jaise poori srishti ruk gayi ho.</p>
+        <p>Aap naraaz hoti hain toh bhi sundar lagti hain &mdash; kintu woh naraazgi mujhe andar se tod deti hai.</p>
+        <p>Aap jab &ldquo;hmm&rdquo; kehti hain, main us ek shabd mein poori kahaani padh leta hoon.</p>
+        <p>Aap meri zindagi ka woh anmol hissa hain jo main khona nahi chahta. <span class="hl">Kabhi nahi.</span></p>
+      `
+    },
+    {
+      title: "Ek Chhota Sa Anurodh",
+      date: "Ab bas yeh bata dijiye&hellip;",
+      label: "Chapter 07",
+      html: `
+        <p class="question-text" id="questionText">Kya aap mujhe kshama kar sakti hain?</p>
+        <div class="qa-row" id="qaRow">
+          <button class="qa-btn qa-yes" id="yesBtn" onclick="sayYes()">Haan</button>
+          <button class="qa-btn qa-no" id="noBtn" onclick="sayNo()">Nahi</button>
+        </div>
+        <p class="no-hint" id="noHint"></p>
+      `
+    },
+    {
+      title: "Ek Vachan",
+      date: "Likh kar deta hoon",
+      label: "Chapter 08",
+      html: `
+        <p>Main vachan deta hoon&hellip;</p>
+        <p>1. Aapki baat dhyan se sununga, bina beech mein bole.</p>
+        <p>2. Aapka poora khayal rakhunga &mdash; bhojan, aaram, swasthya, sab.</p>
+        <p>3. Aapko kabhi akela mehsoos nahi karne dunga.</p>
+        <p>4. Aur jab aap naraaz hongi, main koi halka vinyas sunaunga &mdash; jab tak aap has na dein.</p>
+        <p style="font-style:italic; color:#f9a8d4;">Yeh vachan hai. Toota toh&hellip; aap bata dijiye, main sudhar jaunga.</p>
+      `
+    },
+    {
+      title: "Dhanyavaad",
+      date: "Hriday se",
+      label: "Chapter 09",
+      html: `
+        <p>Yeh sandesh samapt ho raha hai&hellip; kintu humari kahaani nahi.</p>
+        <p>Aap meri zindagi mein hain, yeh meri sabse badi khushi hai. Aur main is khushi ko kabhi khona nahi chahta.</p>
+        <p>Kripya apna poora khayal rakhiye. Samay par bhojan kijiye, aaram kijiye. <span class="hl">Aapka swasthya sarvopari hai.</span></p>
+        <div class="signature">&mdash; Aapka, sadaiv</div>
+      `
+    },
+    {
+      title: "Kshama, Subhashree ji",
+      date: "Antim panza",
+      label: "Chapter 10",
+      html: `
+        <div class="final-heart"></div>
+        <p class="final-text">
+          Yadi aap yahan tak padh aayi hain, toh samajhiye&hellip;<br>
+          aapne mujhe ek avsar diya hai.<br><br>
+          Kripya apna poora khayal rakhiye. Aap theek rahiye &mdash; bas itni si meri kaamna hai.
+        </p>
+      `
     }
   ];
 
-  let currentSpread = 0;
+  let currentPage = 0;
 
-  function renderBook(direction) {
-    const spread = SPREADS[currentSpread];
-    const leftContent = document.getElementById('leftContent');
-    const rightContent = document.getElementById('rightContent');
-    const leftNum = document.getElementById('leftNum');
-    const rightNum = document.getElementById('rightNum');
+  /* Build dots */
+  const dotsRow = document.getElementById('dotsRow');
+  PAGES.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => { currentPage = i; renderPage(); };
+    dotsRow.appendChild(d);
+  });
 
-    if (direction === 'next') {
-      const flip = document.getElementById('flipRight');
-      flip.classList.add('flipping-right');
-      setTimeout(() => flip.classList.remove('flipping-right'), 1050);
-    } else if (direction === 'prev') {
-      const flip = document.getElementById('flipLeft');
-      flip.classList.add('flipping-left');
-      setTimeout(() => flip.classList.remove('flipping-left'), 1050);
-    }
+  function renderPage() {
+    const p = PAGES[currentPage];
+    document.getElementById('chapterLabel').textContent = p.label;
+    document.getElementById('chapterTitle').textContent = p.title;
+    document.getElementById('chapterDate').textContent = p.date;
+    document.getElementById('chapterBody').innerHTML = p.html;
 
-    setTimeout(() => {
-      leftContent.innerHTML = spread.left.html;
-      rightContent.innerHTML = spread.right.html;
-      leftNum.textContent = spread.left.pageNum;
-      rightNum.textContent = spread.right.pageNum;
+    document.getElementById('prevBtn').disabled = currentPage === 0;
+    document.getElementById('nextBtn').disabled = currentPage === PAGES.length - 1;
 
-      document.getElementById('prevBtn').disabled = currentSpread === 0;
-      document.getElementById('nextBtn').disabled = currentSpread === SPREADS.length - 1;
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentPage);
+    });
 
-      updateVoiceButtons();
-    }, direction ? 500 : 0);
+    updateVoiceButtons();
   }
 
   function nextPage() {
-    if (currentSpread < SPREADS.length - 1) {
-      currentSpread++;
-      renderBook('next');
+    if (currentPage < PAGES.length - 1) {
+      currentPage++;
+      renderPage();
     }
   }
   function prevPage() {
-    if (currentSpread > 0) {
-      currentSpread--;
-      renderBook('prev');
+    if (currentPage > 0) {
+      currentPage--;
+      renderPage();
     }
   }
 
@@ -1258,28 +998,12 @@
       voiceAudio.play().then(() => {
         voicePlaying = true;
         updateVoiceButtons();
-        spawnNotes();
         document.getElementById('musicBadge').classList.add('show');
       }).catch(() => {
         const l1 = document.getElementById('voiceLabelLeft');
         if (l1) l1.textContent = 'Punah Dabaiye';
       });
     }
-  }
-
-  let noteTimer = null;
-  function spawnNotes() {
-    if (noteTimer) return;
-    noteTimer = setInterval(() => {
-      if (!voicePlaying) return;
-      const n = document.createElement('div');
-      n.className = 'note';
-      n.style.left = Math.random() * 100 + 'vw';
-      n.style.bottom = '0';
-      n.style.animationDuration = (3 + Math.random() * 3) + 's';
-      document.body.appendChild(n);
-      setTimeout(() => n.remove(), 6500);
-    }, 700);
   }
 
   /* ===== Jokes ===== */
@@ -1342,8 +1066,8 @@
   }
 
   function sayYes() {
-    currentSpread = SPREADS.length - 1;
-    renderBook('next');
+    currentPage = PAGES.length - 1;
+    renderPage();
     if (!voicePlaying) {
       setTimeout(() => {
         voiceAudio.volume = 0.4;
@@ -1352,20 +1076,8 @@
           updateVoiceButtons();
           document.getElementById('musicBadge').classList.add('show');
         }).catch(() => {});
-      }, 1200);
+      }, 800);
     }
-  }
-
-  /* ===== WhatsApp ===== */
-  const MY_NUMBER = '917854069559';
-  function sendToWhatsApp() {
-    const message =
-      "Subhashree ji, kshama kijiye. Maine bahut galtiyan ki hain. " +
-      "Aapka swasthya theek nahi hai, kripya apna poora khayal rakhiye. " +
-      "Samay par bhojan kijiye aur aaram kijiye. Main sadaiv aapke saath hoon. " +
-      "Kripya ek baar muskura dijiye... Kshama, hriday se kshama.";
-    const url = 'https://wa.me/' + MY_NUMBER + '?text=' + encodeURIComponent(message);
-    window.open(url, '_blank');
   }
 </script>
 

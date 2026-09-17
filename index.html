@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kshama - Subhashree Ji</title>
+<title>For Subhashree</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -21,26 +21,25 @@
   }
 
   /* ================================================
-     PREMIUM GRADIENT BACKGROUND
+     LOVE THEME BACKGROUND — soft rose + violet
      ================================================ */
   .bg {
     position: fixed;
     inset: 0;
     z-index: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(139, 92, 246, 0.35) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 55% at 85% 15%, rgba(236, 72, 153, 0.28) 0%, transparent 55%),
-      radial-gradient(ellipse 75% 60% at 50% 100%, rgba(99, 102, 241, 0.3) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(244, 114, 182, 0.2) 0%, transparent 55%),
-      linear-gradient(160deg, #0a0a1a 0%, #15072a 50%, #0a0415 100%);
-    animation: bgShift 20s ease-in-out infinite;
+      radial-gradient(ellipse 80% 60% at 15% 5%, rgba(244, 63, 94, 0.4) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 55% at 90% 20%, rgba(236, 72, 153, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse 75% 60% at 50% 100%, rgba(168, 85, 247, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(251, 113, 133, 0.25) 0%, transparent 55%),
+      linear-gradient(160deg, #1a0410 0%, #2a0724 50%, #14031a 100%);
+    animation: bgShift 22s ease-in-out infinite;
   }
   @keyframes bgShift {
     0%, 100% { filter: hue-rotate(0deg); }
-    50%      { filter: hue-rotate(20deg); }
+    50%      { filter: hue-rotate(15deg); }
   }
 
-  /* Subtle noise / grain */
   .bg::after {
     content: '';
     position: absolute;
@@ -50,26 +49,25 @@
     mix-blend-mode: overlay;
   }
 
-  /* Floating orbs */
   .orb {
     position: fixed;
     border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.4;
+    filter: blur(70px);
+    opacity: 0.45;
     z-index: 1;
-    animation: orbFloat 18s ease-in-out infinite;
+    animation: orbFloat 20s ease-in-out infinite;
     pointer-events: none;
   }
-  .orb.o1 { width: 320px; height: 320px; background: #a855f7; top: 5%; left: -8%; }
-  .orb.o2 { width: 280px; height: 280px; background: #ec4899; bottom: 8%; right: -6%; animation-delay: -6s; }
-  .orb.o3 { width: 240px; height: 240px; background: #6366f1; top: 55%; left: 45%; animation-delay: -12s; opacity: 0.25; }
+  .orb.o1 { width: 340px; height: 340px; background: #f43f5e; top: 2%; left: -10%; }
+  .orb.o2 { width: 300px; height: 300px; background: #ec4899; bottom: 5%; right: -8%; animation-delay: -7s; }
+  .orb.o3 { width: 260px; height: 260px; background: #a855f7; top: 55%; left: 45%; animation-delay: -14s; opacity: 0.3; }
+  .orb.o4 { width: 220px; height: 220px; background: #fb7185; top: 20%; right: 25%; animation-delay: -4s; opacity: 0.25; }
   @keyframes orbFloat {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    33%      { transform: translate(40px, -30px) scale(1.1); }
-    66%      { transform: translate(-30px, 30px) scale(0.95); }
+    33%      { transform: translate(45px, -35px) scale(1.12); }
+    66%      { transform: translate(-35px, 35px) scale(0.92); }
   }
 
-  /* Stars */
   .star {
     position: fixed;
     width: 1.5px; height: 1.5px;
@@ -84,6 +82,34 @@
     50%      { opacity: 0.9; box-shadow: 0 0 6px #fff; }
   }
 
+  /* Floating hearts (soft, love theme) */
+  .float-heart {
+    position: fixed;
+    width: 14px; height: 14px;
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    transform: rotate(-45deg);
+    animation: floatUp linear infinite;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+    border-radius: 2px;
+  }
+  .float-heart::before,
+  .float-heart::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .float-heart::before { top: -7px; left: 0; }
+  .float-heart::after  { top: 0; left: 7px; }
+  @keyframes floatUp {
+    0%   { transform: translateY(100vh) rotate(-45deg) scale(0.3); opacity: 0; }
+    15%  { opacity: 0.55; }
+    100% { transform: translateY(-120px) rotate(-45deg) scale(1.1); opacity: 0; }
+  }
+
   /* ================================================
      SCREEN SYSTEM
      ================================================ */
@@ -94,71 +120,76 @@
     z-index: 10;
     position: relative;
   }
-  .screen.active { display: block; animation: screenIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .screen.active { display: block; animation: screenIn 0.85s cubic-bezier(0.16, 1, 0.3, 1); }
   @keyframes screenIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    from { opacity: 0; transform: translateY(22px) scale(0.98); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   /* ================================================
-     PREMIUM GLASS CARD
+     GLASS CARD — love theme
      ================================================ */
   .glass {
     position: relative;
-    background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 200, 220, 0.18);
+    border-radius: 30px;
     padding: 48px 40px;
     box-shadow:
       0 30px 80px -20px rgba(0, 0, 0, 0.6),
       0 0 0 1px rgba(255, 255, 255, 0.05) inset,
       0 1px 0 rgba(255, 255, 255, 0.15) inset,
-      0 0 80px -30px rgba(168, 85, 247, 0.4);
+      0 0 100px -30px rgba(244, 63, 94, 0.5);
     overflow: hidden;
   }
-  /* Top shine line */
   .glass::before {
     content: '';
     position: absolute;
     top: 0; left: 10%; right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 200, 220, 0.6), transparent);
   }
 
   /* ================================================
      LOGIN
      ================================================ */
-  .login-card {
-    text-align: center;
-  }
+  .login-card { text-align: center; }
 
-  .lock-wrap {
-    width: 82px; height: 82px;
-    margin: 0 auto 22px;
+  .heart-lock {
+    width: 86px; height: 86px;
+    margin: 0 auto 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.15));
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(236, 72, 153, 0.2));
+    border: 1px solid rgba(255, 200, 220, 0.25);
     box-shadow:
-      0 0 40px -10px rgba(168, 85, 247, 0.6),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    animation: lockPulse 3s ease-in-out infinite;
+      0 0 50px -10px rgba(244, 63, 94, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    animation: heartLockPulse 2.8s ease-in-out infinite;
   }
-  @keyframes lockPulse {
-    0%, 100% { box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.6), inset 0 1px 0 rgba(255,255,255,0.2); }
-    50%      { box-shadow: 0 0 60px -5px rgba(236, 72, 153, 0.7), inset 0 1px 0 rgba(255,255,255,0.25); }
+  @keyframes heartLockPulse {
+    0%, 100% { box-shadow: 0 0 50px -10px rgba(244, 63, 94, 0.7), inset 0 1px 0 rgba(255,255,255,0.25); transform: scale(1); }
+    50%      { box-shadow: 0 0 70px -5px rgba(236, 72, 153, 0.8), inset 0 1px 0 rgba(255,255,255,0.3); transform: scale(1.04); }
   }
-  .lock-svg { width: 38px; height: 38px; }
+
+  /* Heart SVG */
+  .heart-svg { width: 40px; height: 40px; animation: heartbeat 1.4s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25%      { transform: scale(1.15); }
+    50%      { transform: scale(1); }
+    75%      { transform: scale(1.1); }
+  }
 
   .login-title {
-    font-size: 1.8em;
+    font-size: 1.85em;
     font-weight: 700;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 50%, #fbcfe8 100%);
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #fecdd3 50%, #f9a8d4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -167,7 +198,7 @@
 
   .login-sub {
     font-size: 0.95em;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 220, 230, 0.7);
     margin-bottom: 32px;
     line-height: 1.7;
     font-weight: 400;
@@ -180,8 +211,8 @@
     text-align: center;
     letter-spacing: 14px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 200, 220, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     color: #fff;
     font-family: 'SF Mono', 'Courier New', monospace;
     outline: none;
@@ -189,12 +220,12 @@
     font-weight: 600;
   }
   .pin-input:focus {
-    border-color: rgba(168, 85, 247, 0.6);
-    background: rgba(0, 0, 0, 0.35);
-    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.12), 0 0 30px -5px rgba(168, 85, 247, 0.5);
+    border-color: rgba(244, 63, 94, 0.7);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.15), 0 0 30px -5px rgba(244, 63, 94, 0.6);
   }
   .pin-input::placeholder {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 200, 220, 0.3);
     letter-spacing: 4px;
     font-size: 0.65em;
     font-weight: 400;
@@ -202,7 +233,7 @@
 
   .hint {
     font-size: 0.82em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 200, 220, 0.5);
     margin-top: 14px;
     font-weight: 400;
   }
@@ -226,24 +257,24 @@
     margin-top: 26px;
     width: 100%;
     padding: 17px;
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #a855f7 100%);
     color: #fff;
     box-shadow:
-      0 10px 30px -10px rgba(168, 85, 247, 0.6),
+      0 10px 30px -10px rgba(244, 63, 94, 0.7),
       0 0 0 1px rgba(255,255,255,0.1) inset,
       0 1px 0 rgba(255,255,255,0.25) inset;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow:
-      0 16px 40px -10px rgba(236, 72, 153, 0.7),
+      0 16px 40px -10px rgba(236, 72, 153, 0.85),
       0 0 0 1px rgba(255,255,255,0.15) inset,
       0 1px 0 rgba(255,255,255,0.3) inset;
   }
   .btn-primary:active { transform: translateY(0); }
 
   .error {
-    color: #fca5a5;
+    color: #fda4af;
     font-size: 0.85em;
     margin-top: 14px;
     min-height: 20px;
@@ -263,7 +294,7 @@
   }
 
   /* ================================================
-     READING CARD (chapter view)
+     READING CARD
      ================================================ */
   .chapter-card {
     padding: 52px 46px;
@@ -275,7 +306,7 @@
   .chapter-head {
     margin-bottom: 28px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 200, 220, 0.1);
   }
 
   .chapter-label {
@@ -283,45 +314,43 @@
     font-size: 0.72em;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(236, 72, 153, 0.9);
+    color: rgba(251, 113, 133, 0.95);
     font-weight: 600;
     margin-bottom: 10px;
     padding: 5px 12px;
     border-radius: 20px;
-    background: rgba(236, 72, 153, 0.1);
-    border: 1px solid rgba(236, 72, 153, 0.2);
+    background: rgba(244, 63, 94, 0.12);
+    border: 1px solid rgba(244, 63, 94, 0.25);
   }
 
   .chapter-title {
     font-size: 1.85em;
     font-weight: 700;
-    background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #fecdd3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.5px;
-    line-height: 1.2;
+    line-height: 1.25;
     margin-bottom: 6px;
   }
 
   .chapter-date {
     font-size: 0.85em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 200, 220, 0.45);
     font-weight: 400;
     font-style: italic;
   }
 
   .chapter-body {
     flex: 1;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.02em;
+    color: rgba(255, 235, 240, 0.9);
+    font-size: 1.05em;
     line-height: 1.9;
     font-weight: 400;
   }
 
-  .chapter-body p {
-    margin-bottom: 16px;
-  }
+  .chapter-body p { margin-bottom: 16px; }
 
   .chapter-body .drop-cap::first-letter {
     font-size: 3.2em;
@@ -329,14 +358,14 @@
     line-height: 0.9;
     padding: 6px 12px 0 0;
     font-weight: 700;
-    background: linear-gradient(135deg, #a855f7, #ec4899);
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .chapter-body .hl {
-    color: #f9a8d4;
+    color: #fda4af;
     font-weight: 600;
   }
 
@@ -344,10 +373,10 @@
     margin-top: auto;
     padding-top: 24px;
     font-size: 0.92em;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 200, 220, 0.55);
     font-style: italic;
     text-align: right;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 200, 220, 0.08);
   }
 
   /* ================================================
@@ -356,8 +385,8 @@
   .btn-soft {
     padding: 13px 24px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 200, 220, 0.08);
+    border: 1px solid rgba(255, 200, 220, 0.15);
     color: #fff;
     font-size: 0.93em;
     backdrop-filter: blur(10px);
@@ -365,41 +394,38 @@
     align-self: flex-start;
   }
   .btn-soft:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 200, 220, 0.15);
+    border-color: rgba(255, 200, 220, 0.25);
     transform: translateY(-2px);
   }
 
   .btn-accent {
     padding: 13px 26px;
     border-radius: 14px;
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
     color: #fff;
     font-size: 0.93em;
     margin-top: 14px;
     align-self: flex-start;
     box-shadow:
-      0 8px 24px -8px rgba(168, 85, 247, 0.6),
+      0 8px 24px -8px rgba(244, 63, 94, 0.7),
       0 1px 0 rgba(255,255,255,0.2) inset;
   }
   .btn-accent:hover {
     transform: translateY(-2px);
     box-shadow:
-      0 12px 32px -8px rgba(236, 72, 153, 0.7),
+      0 12px 32px -8px rgba(236, 72, 153, 0.85),
       0 1px 0 rgba(255,255,255,0.25) inset;
   }
 
   .btn-icon { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
-  /* ================================================
-     JOKE BOX
-     ================================================ */
   .joke-box {
     padding: 20px 22px;
     border-radius: 16px;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.05));
-    border: 1px solid rgba(168, 85, 247, 0.2);
-    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(236, 72, 153, 0.06));
+    border: 1px solid rgba(244, 63, 94, 0.25);
+    color: rgba(255, 235, 240, 0.95);
     font-size: 1em;
     line-height: 1.75;
     margin: 8px 0 14px;
@@ -418,7 +444,7 @@
     font-weight: 500;
     text-align: center;
     margin: 26px 0 34px;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 235, 240, 0.95);
     line-height: 1.5;
     letter-spacing: -0.3px;
   }
@@ -445,27 +471,27 @@
   }
 
   .qa-yes {
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
     color: #fff;
     box-shadow:
-      0 12px 30px -10px rgba(168, 85, 247, 0.6),
+      0 12px 30px -10px rgba(244, 63, 94, 0.7),
       0 1px 0 rgba(255,255,255,0.2) inset;
   }
   .qa-yes:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 18px 40px -10px rgba(236, 72, 153, 0.8);
+    box-shadow: 0 18px 40px -10px rgba(236, 72, 153, 0.9);
   }
 
   .qa-no {
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 200, 220, 0.08);
+    color: rgba(255, 220, 230, 0.9);
+    border: 1px solid rgba(255, 200, 220, 0.18);
   }
-  .qa-no:hover { background: rgba(255, 255, 255, 0.1); }
+  .qa-no:hover { background: rgba(255, 200, 220, 0.14); }
 
   .no-hint {
     font-size: 0.9em;
-    color: rgba(249, 168, 212, 0.9);
+    color: rgba(253, 164, 175, 0.95);
     text-align: center;
     margin-top: 18px;
     min-height: 22px;
@@ -478,36 +504,30 @@
      FINAL SCREEN
      ================================================ */
   .final-heart {
-    width: 64px; height: 64px;
-    background: linear-gradient(135deg, #a855f7, #ec4899);
+    width: 66px; height: 66px;
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
     transform: rotate(-45deg);
     position: relative;
-    margin: 8px auto 36px;
+    margin: 8px auto 38px;
     animation: heartbeat 1.4s ease-in-out infinite;
-    box-shadow: 0 0 50px rgba(236, 72, 153, 0.7);
+    box-shadow: 0 0 60px rgba(244, 63, 94, 0.75);
   }
   .final-heart::before, .final-heart::after {
     content: '';
     position: absolute;
-    width: 64px; height: 64px;
+    width: 66px; height: 66px;
     background: inherit;
     border-radius: 50%;
   }
-  .final-heart::before { top: -32px; left: 0; }
-  .final-heart::after  { top: 0; left: 32px; }
-  @keyframes heartbeat {
-    0%, 100% { transform: rotate(-45deg) scale(1); }
-    25%      { transform: rotate(-45deg) scale(1.12); }
-    50%      { transform: rotate(-45deg) scale(1); }
-    75%      { transform: rotate(-45deg) scale(1.08); }
-  }
+  .final-heart::before { top: -33px; left: 0; }
+  .final-heart::after  { top: 0; left: 33px; }
 
   .final-title {
-    font-size: 1.9em;
+    font-size: 1.95em;
     font-weight: 700;
     text-align: center;
     margin-bottom: 18px;
-    background: linear-gradient(135deg, #ffffff 0%, #fbcfe8 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #fecdd3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -516,7 +536,7 @@
 
   .final-text {
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 220, 230, 0.8);
     line-height: 1.9;
     text-align: center;
     margin-bottom: 20px;
@@ -549,28 +569,28 @@
   }
 
   .nav-prev {
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 200, 220, 0.07);
+    color: rgba(255, 220, 230, 0.9);
+    border: 1px solid rgba(255, 200, 220, 0.15);
     backdrop-filter: blur(10px);
   }
   .nav-prev:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 200, 220, 0.12);
+    border-color: rgba(255, 200, 220, 0.25);
     transform: translateY(-2px);
   }
 
   .nav-next {
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
     color: #fff;
     box-shadow:
-      0 10px 28px -10px rgba(168, 85, 247, 0.6),
+      0 10px 28px -10px rgba(244, 63, 94, 0.7),
       0 1px 0 rgba(255,255,255,0.2) inset;
   }
   .nav-next:hover {
     transform: translateY(-2px);
     box-shadow:
-      0 16px 36px -10px rgba(236, 72, 153, 0.75),
+      0 16px 36px -10px rgba(236, 72, 153, 0.9),
       0 1px 0 rgba(255,255,255,0.25) inset;
   }
 
@@ -592,15 +612,15 @@
   .dot {
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 200, 220, 0.2);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
   }
   .dot.active {
-    background: linear-gradient(135deg, #a855f7, #ec4899);
-    width: 24px;
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    width: 26px;
     border-radius: 4px;
-    box-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+    box-shadow: 0 0 14px rgba(244, 63, 94, 0.7);
   }
 
   /* ================================================
@@ -610,14 +630,14 @@
     position: fixed;
     top: 18px;
     right: 18px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 200, 220, 0.08);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 200, 220, 0.2);
     border-radius: 40px;
     padding: 9px 18px;
     font-size: 0.82em;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 220, 230, 0.9);
     z-index: 100;
     display: none;
     align-items: center;
@@ -635,7 +655,7 @@
   }
   .music-bars span {
     width: 3px;
-    background: linear-gradient(180deg, #a855f7, #ec4899);
+    background: linear-gradient(180deg, #f43f5e, #ec4899);
     border-radius: 2px;
     animation: barPulse 0.9s ease-in-out infinite;
   }
@@ -653,29 +673,29 @@
      ================================================ */
   @media (max-width: 640px) {
     body { padding: 14px 10px; }
-    .glass { padding: 36px 26px; border-radius: 24px; }
+    .glass { padding: 36px 26px; border-radius: 26px; }
     .chapter-card { padding: 38px 26px; min-height: 480px; }
     .login-title { font-size: 1.5em; }
     .chapter-title { font-size: 1.5em; }
-    .chapter-body { font-size: 0.96em; line-height: 1.85; }
+    .chapter-body { font-size: 0.98em; line-height: 1.85; }
     .chapter-body .drop-cap::first-letter { font-size: 2.6em; padding: 4px 8px 0 0; }
-    .lock-wrap { width: 70px; height: 70px; margin-bottom: 18px; }
-    .lock-svg { width: 32px; height: 32px; }
+    .heart-lock { width: 74px; height: 74px; margin-bottom: 20px; }
+    .heart-svg { width: 34px; height: 34px; }
     .question-text { font-size: 1.15em; margin: 20px 0 26px; }
     .qa-btn { padding: 13px 28px; font-size: 0.95em; }
     .nav-btn { padding: 12px 20px; font-size: 0.88em; }
     .final-title { font-size: 1.55em; }
-    .final-heart { width: 52px; height: 52px; }
-    .final-heart::before, .final-heart::after { width: 52px; height: 52px; }
-    .final-heart::before { top: -26px; }
-    .final-heart::after { left: 26px; }
+    .final-heart { width: 54px; height: 54px; }
+    .final-heart::before, .final-heart::after { width: 54px; height: 54px; }
+    .final-heart::before { top: -27px; }
+    .final-heart::after { left: 27px; }
     .music-badge { top: 10px; right: 10px; padding: 7px 13px; font-size: 0.72em; }
   }
 
   @media (max-width: 400px) {
     .glass { padding: 30px 20px; }
     .chapter-card { padding: 30px 20px; }
-    .chapter-body { font-size: 0.92em; }
+    .chapter-body { font-size: 0.94em; }
   }
 </style>
 </head>
@@ -685,6 +705,7 @@
 <div class="orb o1"></div>
 <div class="orb o2"></div>
 <div class="orb o3"></div>
+<div class="orb o4"></div>
 
 <div class="music-badge" id="musicBadge">
   <div class="music-bars"><span></span><span></span><span></span><span></span></div>
@@ -694,23 +715,24 @@
 <!-- ============ SCREEN 1: LOGIN ============ -->
 <div class="screen active" id="screenLogin">
   <div class="glass login-card" id="loginCard">
-    <div class="lock-wrap">
-      <svg class="lock-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3H9zm3 5a2 2 0 0 1 1 3.73V19a1 1 0 0 1-2 0v-1.27A2 2 0 0 1 12 14z" fill="url(#lockGrad)"/>
+    <div class="heart-lock">
+      <svg class="heart-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21s-7-4.35-9.33-8.5C.9 9.5 2.5 6 5.5 5.2c2-.5 3.7.5 4.5 2 .8-1.5 2.5-2.5 4.5-2 3 .8 4.6 4.3 2.83 7.3C19 16.65 12 21 12 21z" fill="url(#heartGrad)"/>
         <defs>
-          <linearGradient id="lockGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#c084fc"/>
-            <stop offset="100%" stop-color="#f472b6"/>
+          <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fda4af"/>
+            <stop offset="50%" stop-color="#f43f5e"/>
+            <stop offset="100%" stop-color="#ec4899"/>
           </linearGradient>
         </defs>
       </svg>
     </div>
-    <h1 class="login-title">Ek Khaas Sandesh</h1>
-    <p class="login-sub">Subhashree ji, yeh sirf aapke liye hai.<br>Kholne ke liye apna sanket daaliye.</p>
-    <input type="password" inputmode="numeric" maxlength="6" class="pin-input" id="pinInput" placeholder="SANKET" autocomplete="off">
-    <p class="hint">Sanket: aapki pasandeeda tareekh (digit mein)</p>
+    <h1 class="login-title">Ek Baat Kehni Hai</h1>
+    <p class="login-sub">Subhashree, yeh sirf aapke liye hai.<br>Kholne ke liye apna code daaliye.</p>
+    <input type="password" inputmode="numeric" maxlength="6" class="pin-input" id="pinInput" placeholder="CODE" autocomplete="off">
+    <p class="hint">Hint: aapki pasandeeda tareekh (digit mein)</p>
     <button class="btn btn-primary" onclick="checkPin()">Kholiye</button>
-    <p class="error" id="errorMsg">Yeh sanket sahi nahi hai. Kripya punah prayas kijiye.</p>
+    <p class="error" id="errorMsg">Yeh code sahi nahi hai. Kripya phir se try kijiye.</p>
   </div>
 </div>
 
@@ -718,7 +740,7 @@
 <div class="screen" id="screenRead">
   <div class="glass chapter-card" id="chapterCard">
     <div class="chapter-head">
-      <span class="chapter-label" id="chapterLabel">Chapter 01</span>
+      <span class="chapter-label" id="chapterLabel">Part 01</span>
       <h2 class="chapter-title" id="chapterTitle"></h2>
       <p class="chapter-date" id="chapterDate"></p>
     </div>
@@ -730,16 +752,19 @@
   <div class="nav-row">
     <button class="nav-btn nav-prev" id="prevBtn" onclick="prevPage()">
       <svg class="btn-icon" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7z"/></svg>
-      Pichla
+      Peeche
     </button>
     <button class="nav-btn nav-next" id="nextBtn" onclick="nextPage()">
-      Agla
+      Aage
       <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7z"/></svg>
     </button>
   </div>
 </div>
 
+<!-- ============ AUDIO — apna song.mp3 ============ -->
 <audio id="voiceAudio" preload="auto" loop>
+  <source src="song.mp3" type="audio/mpeg">
+  <!-- Fallback agar song.mp3 na mile toh -->
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
@@ -755,13 +780,36 @@
     document.body.appendChild(s);
   }
 
+  /* ===== Floating hearts ===== */
+  setInterval(() => {
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    const size = 10 + Math.random() * 12;
+    h.style.width = size + 'px';
+    h.style.height = size + 'px';
+    h.querySelectorAll;
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (9 + Math.random() * 6) + 's';
+    const colors = [
+      'linear-gradient(135deg, #f43f5e, #ec4899)',
+      'linear-gradient(135deg, #fb7185, #f472b6)',
+      'linear-gradient(135deg, #ec4899, #a855f7)',
+      'linear-gradient(135deg, #fda4af, #f43f5e)'
+    ];
+    h.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 16000);
+  }, 900);
+
   function goTo(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* ===== PIN + autoplay music after login ===== */
+  /* ============================================================
+     PIN + SONG AUTOPLAY (login ke baad)
+     ============================================================ */
   const VALID_CODES = ['02', '2', '0206', '02062025', '062'];
   const voiceAudio = document.getElementById('voiceAudio');
   let voicePlaying = false;
@@ -776,7 +824,7 @@
       goTo('screenRead');
       renderPage();
       setTimeout(() => {
-        voiceAudio.volume = 0.4;
+        voiceAudio.volume = 0.45;
         voiceAudio.play().then(() => {
           voicePlaying = true;
           document.getElementById('musicBadge').classList.add('show');
@@ -799,92 +847,91 @@
   });
 
   /* ============================================================
-     PAGES (10 chapters)
+     PAGES — respectful + gen-z vibe + love theme
      ============================================================ */
   const PAGES = [
     {
-      title: "Ek Chhoti Si Shuruwat",
-      date: "Kewal Subhashree ji ke liye",
-      label: "Chapter 01",
+      title: "Ek Baat Kehni Hai...",
+      date: "shuruwat yahin se",
+      label: "Part 01",
       html: `
-        <p class="drop-cap">Subhashree ji, yeh sandesh maine sirf ek hi kaaran se likha hai &mdash; aapko batane ke liye ki main kitna kshama maangta hoon, aur aapse kitna prem karta hoon.</p>
-        <p>Mujhe gyaan hai ki aap naraaz hain, aur iska haqdaar bhi hoon main.</p>
-        <p>Kintu ise padhte hue, meri ek hi ichha hai &mdash; ki aapke chehre par ek chhoti si muskaan aa jaye.</p>
-        <p>Har panne par kuch naya likha hai. Aap kripya padhti rahiye&hellip;</p>
-        <div class="signature">&mdash; Aapka, sadaiv</div>
+        <p class="drop-cap">Subhashree, I know aap gussa hain. Aur honestly? Aap gussa hone ki haqdaar bhi hain. Main jaanta hoon maine kuch aisa kiya jo aapne deserve nahi kiya.</p>
+        <p>Toh yeh sab likh raha hoon. Not to force you, not to convince you. Bas&hellip; dil halka karna tha.</p>
+        <p>Aur ek chhoti si request &mdash; yeh padhna shuru kijiye, aur agar beech mein smile aaye toh mujhe mat batana. Main khud samajh jaunga.</p>
+        <div class="signature">&mdash; Aapka, hamesha</div>
       `
     },
     {
-      title: "Kshama",
-      date: "Hriday se, baar-baar",
-      label: "Chapter 02",
+      title: "Sorry, Dil Se",
+      date: "no filters, no excuses",
+      label: "Part 02",
       html: `
-        <p>Maine aapko rulaya. Maine aapko akela mehsoos karaya. Aur shayad, maine aapko woh diya jo aapne kabhi arjun nahi kiya &mdash; dukh.</p>
-        <p>Main yeh nahi keh raha ki mera koi kasoor nahi tha. Kasoor tha. <span class="hl">Purna kasoor mera tha.</span></p>
-        <p>Kintu ek baat suniye&hellip; main us insaan se alag hoon jo galti karke bhaag jaata hai. Main yahan hoon. Aapke samaksh. Kshama maangte hue.</p>
-        <p>Kshama kijiye. Hriday se kshama kijiye.</p>
+        <p>I messed up. Simple. Maine aapko rulaya, maine aapko akela feel karaya. Aur woh sab &mdash; <span class="hl">poora mera fault tha.</span></p>
+        <p>Main yeh nahi bolunga ki "galti ho gayi" ya "I didn't mean it". Agar mean nahi karta toh karta hi nahi na?</p>
+        <p>Toh sorry. Real sorry. Woh sorry jo bas formality na ho.</p>
+        <p>Aur ek baat &mdash; main bhaagne wala banda nahi hoon. Galti kari hai, toh fix bhi karunga.</p>
       `
     },
     {
-      title: "Meri Awaaz",
-      date: "Ek sandesh, aapke liye",
-      label: "Chapter 03",
+      title: "Yeh Suno Zaroor",
+      date: "text se better hai na",
+      label: "Part 03",
       html: `
-        <p>Kuch baatein likhkar nahi keh sakta. Isliye ek chhota sa sandesh bhej raha hoon&hellip;</p>
-        <p>Kripya suniye. Bas ek baar.</p>
+        <p>Kuch cheezein likh ke nahi keh paata. Toh ek chhota sa message hai&hellip;</p>
+        <p>Suniye zaroor. Ek baar. Please.</p>
         <button class="btn btn-soft" onclick="toggleVoice()" id="voiceBtnLeft" style="margin-top:20px;">
           <svg class="btn-icon" viewBox="0 0 24 24" id="voiceIconLeft">
             <path d="M8 5v14l11-7z"/>
           </svg>
-          <span id="voiceLabelLeft">Meri Awaaz Suniye</span>
+          <span id="voiceLabelLeft">Play Kijiye</span>
         </button>
-        <p style="margin-top:22px; font-style:italic; color:#f9a8d4;">&ldquo;Main aapko kabhi akela nahi chhodunga. Yeh mera vachan hai.&rdquo;</p>
+        <p style="margin-top:22px; font-style:italic; color:#fda4af;">&ldquo;Main aapko akela nahi chhodunga. Promise. Cross my heart.&rdquo;</p>
       `
     },
     {
       title: "Meri Galtiyan",
-      date: "Saaf-saaf, bina bahana",
-      label: "Chapter 04",
+      date: "list bana di, kyunki list clear hoti hai",
+      label: "Part 04",
       html: `
-        <p>1. Maine aapki baat dhyan se nahi suni, jab aap sunna chahti thi.</p>
-        <p>2. Maine apne ahankar ko aapse upar rakha, jo galat tha.</p>
-        <p>3. Maine aapko woh samay nahi diya jo aap arjun karti thi.</p>
-        <p>4. Maine aapko rulaya, jab aapko sahara chahiye tha.</p>
-        <p>Yeh galtiyan hain. Bahane nahi. Aur main inhe sudhaarunga.</p>
+        <p>1. Jab aap baat karna chahti thi, main dhyan se nahi suna.</p>
+        <p>2. Apne ego ko aapse upar rakha &mdash; bilkul bakwaas move tha.</p>
+        <p>3. Aapko woh time nahi diya jo aap deserve karti thi.</p>
+        <p>4. Aur sabse bura &mdash; aapko rulaya, jab actually aapko hug chahiye tha.</p>
+        <p>Yeh galtiyan hain. Excuses nahi. Aur main inpe kaam karunga.</p>
       `
     },
     {
-      title: "Kuch Hansi Ki Baatein",
-      date: "Kyunki aapki muskaan meri duniya hai",
-      label: "Chapter 05",
+      title: "Ab Thoda Smile Kijiye",
+      date: "kyunki aapki smile > everything",
+      label: "Part 05",
       html: `
-        <p>Ab kripya thoda halka mehsoos kijiye. Neeche diye button ko dabate rahiye, har baar naya halka-phulka vinyas aayega.</p>
-        <div class="joke-box" id="jokeBox">Yahan pehla vinyas aayega&hellip; button dabaiye.</div>
+        <p>Okay ab thoda chill kijiye. Neeche button dabate rahiye, har baar naya joke aayega. Guarantee nahi hai ki hasenge, but try toh kar sakte hain na.</p>
+        <div class="joke-box" id="jokeBox">Button dabaiye, joke aayega. Simple.</div>
         <button class="btn btn-accent" onclick="nextJoke()">
           <svg class="btn-icon" viewBox="0 0 24 24">
             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-4 7a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm-8.5 5.5h9a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1 0-1.5z"/>
           </svg>
-          Ek Aur Dikhayiye
+          Ek Aur
         </button>
       `
     },
     {
       title: "Aapke Baare Mein",
-      date: "Jo main kabhi keh nahi paaya",
-      label: "Chapter 06",
+      date: "jo maine kabhi bola nahi",
+      label: "Part 06",
       html: `
-        <p>Aap hansti hain toh lagta hai jaise poori srishti ruk gayi ho.</p>
-        <p>Aap naraaz hoti hain toh bhi sundar lagti hain &mdash; kintu woh naraazgi mujhe andar se tod deti hai.</p>
-        <p>Aap jab &ldquo;hmm&rdquo; kehti hain, main us ek shabd mein poori kahaani padh leta hoon.</p>
-        <p>Aap meri zindagi ka woh anmol hissa hain jo main khona nahi chahta. <span class="hl">Kabhi nahi.</span></p>
+        <p>Jab aap hansti hain na, toh lagta hai duniya ruk gayi. Literally.</p>
+        <p>Aap gussa hoti hain toh bhi cute hain. But woh gussa mujhe andar se tod deta hai, aap jaanti hain?</p>
+        <p>Aap jab "hmm" bolti hain, main us ek word mein poori kahani padh leta hoon.</p>
+        <p>Aap meri life ka woh part hain jo main <span class="hl">kabhi lose nahi karna chahta.</span> Ever.</p>
       `
     },
     {
-      title: "Ek Chhota Sa Anurodh",
-      date: "Ab bas yeh bata dijiye&hellip;",
-      label: "Chapter 07",
+      title: "Ek Chhota Sa Sawal",
+      date: "bas haan ya na",
+      label: "Part 07",
       html: `
-        <p class="question-text" id="questionText">Kya aap mujhe kshama kar sakti hain?</p>
+        <p class="question-text" id="questionText">Kya aap mujhe maaf kar sakti hain?</p>
         <div class="qa-row" id="qaRow">
           <button class="qa-btn qa-yes" id="yesBtn" onclick="sayYes()">Haan</button>
           <button class="qa-btn qa-no" id="noBtn" onclick="sayNo()">Nahi</button>
@@ -893,39 +940,39 @@
       `
     },
     {
-      title: "Ek Vachan",
-      date: "Likh kar deta hoon",
-      label: "Chapter 08",
+      title: "Ek Promise",
+      date: "likh ke de raha hoon",
+      label: "Part 08",
       html: `
-        <p>Main vachan deta hoon&hellip;</p>
-        <p>1. Aapki baat dhyan se sununga, bina beech mein bole.</p>
-        <p>2. Aapka poora khayal rakhunga &mdash; bhojan, aaram, swasthya, sab.</p>
-        <p>3. Aapko kabhi akela mehsoos nahi karne dunga.</p>
-        <p>4. Aur jab aap naraaz hongi, main koi halka vinyas sunaunga &mdash; jab tak aap has na dein.</p>
-        <p style="font-style:italic; color:#f9a8d4;">Yeh vachan hai. Toota toh&hellip; aap bata dijiye, main sudhar jaunga.</p>
+        <p>Okay here's my promise&hellip;</p>
+        <p>1. Aapki baat dhyan se sununga, bina interrupt kiye.</p>
+        <p>2. Aapka khayal rakhunga &mdash; khana, aaram, health, sab.</p>
+        <p>3. Aapko kabhi akela feel nahi karne dunga.</p>
+        <p>4. Aur jab aap gussa hongi, main joke sunaunga &mdash; jab tak aap has na dein.</p>
+        <p style="font-style:italic; color:#fda4af;">Yeh promise hai. Toota toh&hellip; aap bata dijiye, main sudhar jaunga.</p>
       `
     },
     {
-      title: "Dhanyavaad",
-      date: "Hriday se",
-      label: "Chapter 09",
+      title: "Thank You",
+      date: "dil se",
+      label: "Part 09",
       html: `
-        <p>Yeh sandesh samapt ho raha hai&hellip; kintu humari kahaani nahi.</p>
-        <p>Aap meri zindagi mein hain, yeh meri sabse badi khushi hai. Aur main is khushi ko kabhi khona nahi chahta.</p>
-        <p>Kripya apna poora khayal rakhiye. Samay par bhojan kijiye, aaram kijiye. <span class="hl">Aapka swasthya sarvopari hai.</span></p>
-        <div class="signature">&mdash; Aapka, sadaiv</div>
+        <p>Yeh sab yahan khatam ho raha hai&hellip; but humari story nahi.</p>
+        <p>Aap meri life mein hain, yeh meri sabse badi khushi hai. Aur main isse kabhi lose nahi karna chahta.</p>
+        <p>Please apna khayal rakhiye. Time pe khana, aaram karna. <span class="hl">Aapki health sabse pehle hai.</span></p>
+        <div class="signature">&mdash; Aapka, hamesha</div>
       `
     },
     {
-      title: "Kshama, Subhashree ji",
-      date: "Antim panza",
-      label: "Chapter 10",
+      title: "Sorry, Subhashree",
+      date: "last page, but not the end",
+      label: "Part 10",
       html: `
         <div class="final-heart"></div>
         <p class="final-text">
-          Yadi aap yahan tak padh aayi hain, toh samajhiye&hellip;<br>
-          aapne mujhe ek avsar diya hai.<br><br>
-          Kripya apna poora khayal rakhiye. Aap theek rahiye &mdash; bas itni si meri kaamna hai.
+          Agar aap yahan tak padh aayi hain, toh&hellip;<br>
+          matlab aapne mujhe ek chance diya hai.<br><br>
+          Bas apna khayal rakhiye. Aap theek rahe &mdash; bas itni si meri wish hai.
         </p>
       `
     }
@@ -933,7 +980,6 @@
 
   let currentPage = 0;
 
-  /* Build dots */
   const dotsRow = document.getElementById('dotsRow');
   PAGES.forEach((_, i) => {
     const d = document.createElement('div');
@@ -972,7 +1018,6 @@
     }
   }
 
-  /* ===== Voice ===== */
   function updateVoiceButtons() {
     const l1 = document.getElementById('voiceLabelLeft');
     const i1 = document.getElementById('voiceIconLeft');
@@ -981,7 +1026,7 @@
       l1.textContent = 'Rukiye...';
       if (i1) i1.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
     } else {
-      l1.textContent = 'Meri Awaaz Suniye';
+      l1.textContent = 'Play Kijiye';
       if (i1) i1.innerHTML = '<path d="M8 5v14l11-7z"/>';
     }
   }
@@ -994,28 +1039,28 @@
       updateVoiceButtons();
       document.getElementById('musicBadge').classList.remove('show');
     } else {
-      voiceAudio.volume = 0.4;
+      voiceAudio.volume = 0.45;
       voiceAudio.play().then(() => {
         voicePlaying = true;
         updateVoiceButtons();
         document.getElementById('musicBadge').classList.add('show');
       }).catch(() => {
         const l1 = document.getElementById('voiceLabelLeft');
-        if (l1) l1.textContent = 'Punah Dabaiye';
+        if (l1) l1.textContent = 'Phir se dabaiye';
       });
     }
   }
 
-  /* ===== Jokes ===== */
+  /* ===== Jokes — respectful + light ===== */
   const jokes = [
-    "Mujhe vyayamshala chhodni padi &mdash; kyunki aapke saamne toh main pehle se hi bhaavuk hoon, sharirik nahi.",
-    "Chikitsak ne kaha aaram kijiye. Maine kaha &mdash; pehle Subhashree ji ka naraazgi theek ho jaye, phir sochunga.",
-    "Meri yantra ki battery 1% par aati hai toh main charger dhoondhta hoon. Aapki muskaan 1% par aati hai toh main duniya bhool jaata hoon.",
-    "Aapke bina main aisa hoon jaise bina internet ke phone &mdash; juda dikhta hoon, kintu kaam nahi karta.",
-    "Google se poocha &mdash; 'sabse sundar mahila kaun?' Google boli &mdash; 'bhai, aap pehle se jaante hain, jaakar kshama maang lijiye.'",
-    "Aap naraaz hoti hain toh bhi sundar lagti hain. Kintu aap hansti hain toh samay ruk jaata hai. Kripya, thodi si muskaan dijiye.",
-    "Mera priya samay? Jab aap 'kshama' ke baad 'chalega' kehti hain.",
-    "Zindagi mein do cheezein mahatvapurna hain &mdash; chai aur aapki muskaan. Chai mil jaati hai, muskaan ke liye kshama maang raha hoon."
+    "Maine gym kyun chhoda? Kyunki aapke saamne toh main pehle se hi weak hoon. Dil se. Literally.",
+    "Doctor ne bola rest karo. Maine bola — pehle Subhashree ka gussa theek ho jaye, phir sochunga.",
+    "Meri battery 1% pe aati hai toh charger dhoondhta hoon. Aapki smile 1% pe aati hai toh main duniya bhool jaata hoon. Weird flex but okay.",
+    "Aapke bina main aisa hoon jaise WiFi bina phone — connected dikhta hoon, but kaam nahi karta.",
+    "Google se pucha — 'sabse pyaari ladki kaun?' Google bola — 'bhai tu already jaanta hai, jaake sorry maang le.'",
+    "Aap gussa hoti hain toh bhi cute lagti hain. But aap hansti hain toh samay ruk jaata hai. Please, thoda muskura dijiye.",
+    "Mera favourite time? Jab aap 'sorry' ke baad 'chalega' bolti hain. That's the moment, fr.",
+    "Life mein do cheezein important hain — chai aur aapki smile. Chai mil jaati hai, smile ke liye maafi maang raha hoon."
   ];
   let jokeIndex = 0;
 
@@ -1030,15 +1075,14 @@
     }, 180);
   }
 
-  /* ===== Q&A ===== */
   let noCount = 0;
   const noResponses = [
-    "Nahi dabaya? Koi baat nahi, main pratiksha karunga.",
+    "Nahi dabaya? Okay okay, main wait karunga.",
     "Ab bhi nahi? Dekhiye, teddy bhi udaas ho raha hai.",
-    "Theek hai, ek aur avsar dijiye&hellip; kripya.",
-    "Aapki muskaan toh 'haan' keh rahi hai. Bas ek chhota sa chinh.",
-    "Chaliye, main pratiksha karunga. Kintu 'Nahi' button dheere-dheere bhaag raha hai.",
-    "Aakhri baar anurodh kar raha hoon&hellip; kripya."
+    "Chaliye ek aur chance dijiye... please?",
+    "Aapki smile toh 'haan' bol rahi hai. Bas ek click.",
+    "Theek hai, main wait karunga. But 'Nahi' button dheere dheere bhaag raha hai, dekha?",
+    "Last baar puch raha hoon... please?"
   ];
 
   function sayNo() {
@@ -1070,7 +1114,7 @@
     renderPage();
     if (!voicePlaying) {
       setTimeout(() => {
-        voiceAudio.volume = 0.4;
+        voiceAudio.volume = 0.45;
         voiceAudio.play().then(() => {
           voicePlaying = true;
           updateVoiceButtons();

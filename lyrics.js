@@ -1,16 +1,16 @@
 // Format: { time: seconds, text: "line" }
 // Song sunte sunte har line ka shuru hone ka time (seconds) likho
 const LYRICS = [
-  { time: 0,   text: "" },                              // intro khaali
-  { time: 15,  text: "Kaagaz ke phool laau tere liye" }, // ← time tum badlo
-  { time: 20,  text: "Khat likhu tere liye" },
-  { time: 25,  text: "Main Khuda mein maanu nahi" },
-  { time: 30,  text: "Par maangu dua tere liye" },
-  { time: 38,  text: "Tere liye ghar banaau" },
-  { time: 44,  text: "Deewaarein neele rang se sajaau" },
-  { time: 52,  text: "Dekh shayar bana tere liye" },
-  { time: 58,  text: "Naghma likha tere liye" },
-  { time: 64,  text: "Main Khuda mein maanu kyun" },
-  { time: 70,  text: "Tu Khuda mere liye" },
+  { time: "00:00:00",   text: "" },                              // intro khaali
+  { time: "00:00:20",  text: "Kaagaz ke phool laau tere liye" }, // ← time tum badlo
+  { time: "00:00:27",  text: "Khat likhu tere liye" },
+  { time: "00:00:32",  text: "Main Khuda mein maanu nahi" },
+  { time: "00:00:37",  text: "Par maangu dua tere liye" },
+  { time: "00:00:44",  text: "Tere liye ghar banaau" },
+  { time: "00:00:50",  text: "Deewaarein neele rang se sajaau" },
+  { time: "00:00:54",  text: "Pasand Hai Tumhe Maloom Hai" },
+  { time: "00:00:59",  text: "Tumne Bataya Tha Ek Dafe" },
+  { time: "00:01:00",  text: "Main Khuda mein maanu kyun" },
+  { time: "00:01:05,  text: "Neele Phool Laau Tere Liye" },
   // ... poori song ki lines aise hi daalo
 ];
